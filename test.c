@@ -6,7 +6,7 @@
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 06:12:09 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:08:43 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/02/07 18:23:18 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			main()
 {
 	int		*ptr;
 	printf("---TEST 1---\narg = 42\nflag = -d\n\t\t--->%+-d<---\n\n", 42);
-	printf("---TEST 2---\narg = 42\nflag = +.4d\n\t\t--->%+10.3d<---\n\n", 424242);
+	printf("---TEST 2---\narg = 42\nflag = +8d\n\t\t--->% .8d<---\n\n", 424242);
 	printf("---TEST 3---\narg = 42\nflag = +d\n\t\t--->%+d<---\n\n", 42);
 	printf("---TEST 4---\narg = 42\nflag =  d\n\t\t--->% d<---\n\n", 42);
 	printf("---TEST 6---\narg = 42\nflag = 04d\n\t\t--->%04d<---\n\n", 42);
@@ -32,7 +32,7 @@ int			main()
 	printf("---TEST 15---\narg = -42\nflag = 05d\n\t\t--->%05d<---\n\n", -42);
 	printf("---TEST 16---\narg = -42\nflag = 05d\n\t\t--->%05d<---\n\n", -42);
 	printf("---TEST 17---\narg = ptr\nflag = p\n\t\t--->%p<---\n\n", ptr);
-	printf("---TEST 18--- == arg = \"hello world\"\nflag = 10s\n\t\t--->%s<---\n\n", "hello world");
+	printf("---TEST 18--- == arg = \"hello world\"\nflag = 10s\n\t\t--->%-12s<---\n\n", "hello world");
 	printf("---TEST 19---\narg = -42 ||flag = +-4d\n\t\t--->%+-4d<---\n\n", -42);
 	printf("---TEST 20---\narg = -42\nflag = -+4d\n\t\t--->%-+4d<---\n\n", -42);
 	printf("---TEST 21---\narg = 42\nflag = +-4d\n\t\t--->%+-4d<---\n\n", 42);

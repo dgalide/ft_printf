@@ -6,7 +6,7 @@
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 01:22:37 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:08:34 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/02/07 18:43:39 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,20 +201,46 @@ void			add_len(t_data *data, char **str)
 	}
 }
 
+void			add_space(char **str)
+{
+	char		*tmp;
+	char		*tmp2;
+
+	tmp = (char *)malloc(sizeof(char) * 3);
+	tmp[0] = ' ';
+	tmp[1] = '\0';
+	tmp2 = *str;
+	*str = ft_strjoin(tmp, *str);
+	ft_memdel((void *)&tmp2);
+	ft_memdel((void *)&tmp);
+}
+
 void			print_d(t_data *data, va_list arg)
 {
 	char *str;
+	char *tmp;
 	int		i;
 
 	str = ft_itoa(va_arg(arg, int));
 	i = 0;
 	if (data->flag->plus == 1)
+	{
+		data->flag->space = 0;
 		add_plus(&str);
+	}
 	if (data->precision > (int)ft_strlen(str))
 		add_precision(data, &str);
 	if (data->len > (int)ft_strlen(str))
+	{
+		data->flag->space = 0;
 		add_len(data, &str);
-	printf("final str = %s\n", str);
+	}
+	if (data->flag->space == 1)
+		add_space(&str);
+	tmp = data->final_string;
+	data->final_string = ft_strjoin(data->final_string, str);
+	ft_memdel((void *)&tmp);
+	ft_memdel((void *)&str);
 }
 
 /*int				refresh_final_string(t_data *data, char *format, int start)
@@ -229,8 +255,10 @@ int				ft_printf(const char *format, ...)
 	t_data		*data;
 	va_list		arg;
 	int			i;
+	int			j;
 
 	i = -1;
+	j = 0;
 	va_start(arg, format);
 	data = load_struct();
 	while (format[++i])
@@ -239,6 +267,9 @@ int				ft_printf(const char *format, ...)
 			i += 2;
 		if (format[i] == '%')
 		{
+			data->final_string = ft_strsub(format, j, i);
+			ft_putendl(data->final_string);
+			j = i;
 			if (search_specifier((char *)format, data, i) == 0)
 				return (-1);
 			shear_setting(data);
@@ -249,7 +280,7 @@ int				ft_printf(const char *format, ...)
 			printf("precision = %d && len = %d && modifier = %c\n", data->precision, data->len, data->modifier);
 	//		refresh_final_string(data, format, i);
 			print_d(data, arg);
-		//	print_final_string();
+			ft_putstr(data->final_string);
 		}
 	}
 	return (0);
@@ -257,6 +288,6 @@ int				ft_printf(const char *format, ...)
 
 int				main(void)
 {
-	ft_printf("hello les %++10.3d", 42);
+	ft_printf("hello les % .8d", 424242);
 	return (0);
 }
