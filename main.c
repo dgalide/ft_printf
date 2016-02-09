@@ -19,6 +19,29 @@ void				refresh_string(t_data *data, va_list arg)
 		print_d(data, arg);
 }
 
+int				get_side(t_data *data, int j, int i)
+{
+	char		*tmp;
+
+	tmp = data->final_string;
+	if (i > j)
+	{
+		if (tmp)
+		{
+			data->final_string = ft_strjoin(data->final_string,\
+			ft_strsub(data->form, j, i - j));
+			return (1);
+		}
+		else
+		{
+			data->final_string = ft_strsub(data->form, j, i - j);
+			return (1);
+		}
+	}
+	else
+		return (1);
+}
+
 int				ft_printf(const char *format, ...)
 {
 	t_data		*data;
@@ -29,48 +52,32 @@ int				ft_printf(const char *format, ...)
 	i = 0;
 	j = 0;
 	va_start(arg, format);
-	data = load_struct();
+	data = load_struct(format);
 	while (format[i])
 	{
 		if (format[i + 1] && format[i] == '%' && format[i + 1] == '%')
 			i += 2;
 		if (format[i] == '%')
 		{
-			if (search_specifier((char *)format, data, i) == 0)
+			if (search(data, i) == -1)
 				return (-1);
-			get_rest(data, format, j, i);
-			i += ft_strlen((char *)data->setting);
-			j = i;
+			get_side(data, j, i);
+			j = i + data->len_setting;
+			i += data->len_setting;
 			shear_setting(data);
-			if (search_modifier(data) == 0)
-				return (-1);
 			get_precision_len(data);
 			refresh_string(data, arg);
 		}
 		i++;
 	}
-	get_rest(data, format, j, (ft_strlen(format) - j));
+	get_side(data, j, i);
 	ft_putstr(data->final_string);
 	return (ft_strlen(data->final_string));
 }
 
 int				main(void)
 {
-	printf("ret = %d\n\n", ft_printf("hello les % .8hhd\n", 4));
-	printf("ret = %d\n\n", printf("hello les % .8hhd\n", (char)4));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", ft_printf("hello les % .8d\n", 424242));
-	printf("ret = %d\n\n", printf("hello les % .8d\n", 424242));		
+	printf("ret = %d\n\n", ft_printf("hello les %.8d\n", 4));
+	printf("ret = %d\n\n", printf("hello les %.8d\n", 4));
 	return (0);
 }

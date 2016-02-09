@@ -15,17 +15,16 @@
 void			get_rest(t_data *data, const char *format, int start, int i)
 {
 	char		*tmp;
-	char		*tmp2;
 
-	tmp = ft_strdup((char *)format);
-	if (data->final_string)
+	if (i > 0 && i > start)
 	{
-		tmp2 = ft_strsub(tmp, start, i);
-		tmp = ft_strjoin(data->final_string, tmp2);
-		data->final_string = ft_strdup(tmp);
+		tmp = ft_strsub(format, start, i);
+		if (data->final_string)
+			data->final_string = ft_strjoin(data->final_string, tmp);
+		else
+			data->final_string = ft_strdup(tmp);
 	}
-	else
-		data->final_string = ft_strsub(tmp, start, i);
+
 }
 
 int				get_precision_len(t_data *data)

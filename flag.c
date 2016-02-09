@@ -42,9 +42,10 @@ void			add_precision(t_data *data, char **str)
 	char		*tmp2;
 
 	j = 0;
-	if (data->flag->plus == 1)
+	tmp2 = NULL;
+	tmp2 = ft_strdup(*str);
+	if (data->flag->plus == 1 && data->precision > (int)ft_strlen(tmp2))
 	{
-		
 		i = data->precision - (ft_strlen(*str) - 1);
 		tmp = (char *)malloc(sizeof(char) * (data->precision + 1));
 		tmp[j] = '+';
@@ -59,7 +60,7 @@ void			add_precision(t_data *data, char **str)
 		ft_memdel((void *)&tmp);
 		ft_memdel((void *)&tmp2);
 	}
-	else
+	else if (data->flag->plus == 0 && data->precision > (int)ft_strlen(tmp2))
 	{
 		i = data->precision - ft_strlen(*str);
 		tmp = (char *)malloc(sizeof(char) * data->precision);

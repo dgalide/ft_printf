@@ -42,6 +42,8 @@ typedef struct 	s_data
 	t_spec		*specifier;
 	char		modifier;
 	char		*setting;
+	char		*form;
+	int			len_setting;
 	int			len;
 	char		*final_string;
 	int			nb_arg;
@@ -52,14 +54,16 @@ void			add_precision(t_data *data, char **str);
 void			add_len(t_data *data, char **str);
 void			add_space(char **str);
 void			add_plus(char **str);
+void			set_zero_data(t_data *data);
 int				ft_printf(const char *format, ...);
 int				ft_is_flag(char c);
 int				search_specifier(char *str, t_data *data, int start);
 int				search_modifier(t_data *data);
+int				search(t_data *data, int i);
 void			print_d(t_data *data, va_list arg);
 int				get_precision_len(t_data *data);
 void			get_rest(t_data *data, const char *format, int start, int i);
-t_data			*load_struct(void);
+t_data			*load_struct(const char *format);
 int				check_setting(char *format, int i);
 
 #endif

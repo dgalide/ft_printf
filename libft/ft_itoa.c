@@ -13,7 +13,7 @@
 #include "includes/libft.h"
 #include <stdio.h>
 
-static size_t	ft_strleni(int n, int base)
+static size_t	ft_strleni(intmax_t n, int base)
 {
 	size_t	i;
 
@@ -33,16 +33,14 @@ static size_t	ft_strleni(int n, int base)
 char			*ft_itoa(intmax_t nb, int base)
 {
 	char			*str;
-	size_t			len;
-	int 			a;
+	intmax_t		len;
+	intmax_t		a;
 
 	a = 0;
-	len = ft_strleni(nb, base);
-	str = (char *)malloc(sizeof(char) * len);
+	len = ft_strleni(nb, base) - 1;
+	str = ft_strnew(len + 1);
 	if (!str)
 		return (NULL);
-	str[len] = '\0';
-	len--;
 	if (nb == 0)
 		str[len] = '0';
 	if (nb < 0)
@@ -68,11 +66,11 @@ char			*ft_itoa(intmax_t nb, int base)
 	return (str);
 }
 
-int 			main()
+/*int 			main()
 {
 	char		*str;
 
-	str = ft_itoa(42, 32);
+	str = ft_itoa(10101995, 16);
 	printf("str = %s\n", str);
 	return 0;
-}
+}*/

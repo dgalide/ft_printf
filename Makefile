@@ -6,7 +6,7 @@
 #    By: mchevall <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/26 14:43:40 by mchevall          #+#    #+#              #
-#    Updated: 2016/02/03 04:13:36 by dgalide          ###   ########.fr        #
+#    Updated: 2016/02/09 16:12:11 by dgalide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C Libft
-	gcc -o $(NAME) $(FLAG) $(SRC) $(LIB)
+	gcc -g -o $(NAME) $(FLAG) $(SRC) $(LIB)
 
 clean:
 	make -C Libft clean

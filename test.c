@@ -17,7 +17,7 @@ int			main()
 {
 	int		*ptr;
 	printf("---TEST 1---\narg = 42\nflag = -d\n\t\t--->%+-d<---\n\n", 42);
-	printf("---TEST 2---\narg = 42\nflag = +8d\n\t\t--->% .8d<---\n\n", 424242);
+	printf("---TEST 2---\narg = 42\nflag = +8d\n\t\t--->% .3d<---\n\n", 424242);
 	printf("---TEST 3---\narg = 42\nflag = +d\n\t\t--->%+d<---\n\n", 42);
 	printf("---TEST 4---\narg = 42\nflag =  d\n\t\t--->% d<---\n\n", 42);
 	printf("---TEST 6---\narg = 42\nflag = 04d\n\t\t--->%04d<---\n\n", 42);

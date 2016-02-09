@@ -29,6 +29,7 @@ int				search_specifier(char *str, t_data *data, int start)
 		{
 			data->modifier = str[start];
 			data->setting = ft_strsub(str, begin, (start - begin) + 1);
+			data->len_setting = ft_strlen(data->setting);
 			return (1);
 		}
 		start++;
@@ -65,4 +66,13 @@ int				search_modifier(t_data *data)
 		return ((check_setting(data->setting, i - 1) == 1) ? 1 : 0);
 	else
 		return ((check_setting(data->setting, i) == 1) ? 1 : 0);
+}
+
+int				search(t_data *data, int i)
+{
+	if (search_specifier(data->form, data, i) == 0)
+		return (-1);
+	if (search_modifier(data) == 0)
+		return (-1);
+	return (1);
 }
