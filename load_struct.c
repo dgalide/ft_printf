@@ -53,7 +53,7 @@ static t_spec				*set_spec(void)
 	return (spec);
 }
 
-t_data					*load_struct(void)
+t_data						*load_struct(void)
 {
 	t_data *data;
 	t_flag *flag;
@@ -64,5 +64,5 @@ t_data					*load_struct(void)
 	spec = set_spec();
 	data->flag = flag;
 	data->specifier = spec;
-	return (data);
+	return(data);
 }

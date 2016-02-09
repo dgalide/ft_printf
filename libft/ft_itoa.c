@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "includes/libft.h"
+#include <stdio.h>
 
-static size_t	ft_strleni(int n)
+static size_t	ft_strleni(int n, int base)
 {
 	size_t	i;
 
@@ -23,37 +24,55 @@ static size_t	ft_strleni(int n)
 		i++;
 	while (n)
 	{
-		n = n / 10;
+		n = n / base;
 		i++;
 	}
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(intmax_t nb, int base)
 {
 	char			*str;
 	size_t			len;
-	unsigned int	nb;
+	int 			a;
 
-	nb = n;
-	len = ft_strleni(n);
+	a = 0;
+	len = ft_strleni(nb, base);
 	str = (char *)malloc(sizeof(char) * len);
 	if (!str)
 		return (NULL);
 	str[len] = '\0';
 	len--;
-	if (n == 0)
+	if (nb == 0)
 		str[len] = '0';
-	if (n < 0)
+	if (nb < 0)
 	{
 		nb *= -1;
 		str[0] = '-';
 	}
 	while (nb)
 	{
-		str[len] = (nb % 10) + 48;
-		nb = nb / 10;
+		if (base > 9)
+		{
+			a = nb % base;
+			str[len] = ((a > 9) ? (a - 10) + 'a' : a + '0');
+			nb = nb / base;
+		}
+		else
+		{
+			str[len] = nb % base + '0';
+			nb = nb / base;
+		}
 		len--;
 	}
 	return (str);
+}
+
+int 			main()
+{
+	char		*str;
+
+	str = ft_itoa(42, 32);
+	printf("str = %s\n", str);
+	return 0;
 }

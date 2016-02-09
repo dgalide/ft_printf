@@ -72,7 +72,7 @@ int					ft_strequ(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 int					check_line(char *str, int c);
 
-char				*ft_itoa(int n);
+char				*ft_itoa(intmax_t nb, int base);
 char				*ft_strmap(const char *s, char (*f)(char));
 char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char				*ft_strcat(char *s1, const char *s2);

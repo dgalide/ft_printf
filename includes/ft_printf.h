@@ -47,11 +47,20 @@ typedef struct 	s_data
 	int			nb_arg;
 }				t_data;
 
-int			ft_printf(const char *format, ...);
-int			search_specifier(char *str, t_data *data, int start);
-t_data		*load_struct(void);
-void		shear_setting(t_data *data);
-int			check_setting(char *format, int i);
+void			shear_setting(t_data *data);
+void			add_precision(t_data *data, char **str);
+void			add_len(t_data *data, char **str);
+void			add_space(char **str);
+void			add_plus(char **str);
+int				ft_printf(const char *format, ...);
+int				ft_is_flag(char c);
+int				search_specifier(char *str, t_data *data, int start);
+int				search_modifier(t_data *data);
+void			print_d(t_data *data, va_list arg);
+int				get_precision_len(t_data *data);
+void			get_rest(t_data *data, const char *format, int start, int i);
+t_data			*load_struct(void);
+int				check_setting(char *format, int i);
 
 #endif
 

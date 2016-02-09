@@ -17,7 +17,11 @@ LIB = Libft/libft.a
 SRC =	main.c 			\
 		load_struct.c 	\
 		cut.c 			\
-		utils.c
+		utils.c 		\
+		print_d.c 		\
+		search.c 		\
+		get.c 			\
+		flag.c 			
 
 FLAG = -Wall -Werror -Wextra
 
