@@ -21,7 +21,10 @@ SRC =	main.c 			\
 		print_d.c 		\
 		search.c 		\
 		get.c 			\
-		flag.c 			
+		flag.c 			\
+		print_hexa.c 	\
+		print_octal.c 	\
+		print_ptr.c
 
 FLAG = -Wall -Werror -Wextra
 

@@ -15,8 +15,14 @@
 
 void				refresh_string(t_data *data, va_list arg)
 {
-	if (data->modifier == 'd')
+	if (data->modifier == 'd' || data->modifier == 'u' || data->modifier == 'i')
 		print_d(data, arg);
+	if (data->modifier == 'x' || data->modifier == 'X')
+		print_hexa(data, arg);
+	if (data->modifier == 'o' || data->modifier == 'O')
+		print_octal(data, arg);
+	if (data->modifier == 'p')
+		print_ptr(data, arg);
 }
 
 int				get_side(t_data *data, int j, int i)
@@ -53,6 +59,7 @@ int				ft_printf(const char *format, ...)
 	j = 0;
 	va_start(arg, format);
 	data = load_struct(format);
+
 	while (format[i])
 	{
 		if (format[i + 1] && format[i] == '%' && format[i + 1] == '%')
@@ -66,7 +73,7 @@ int				ft_printf(const char *format, ...)
 			i += data->len_setting;
 			shear_setting(data);
 			get_precision_len(data);
-			refresh_string(data, arg);
+			refresh_string(data, arg);\
 		}
 		i++;
 	}
@@ -77,7 +84,12 @@ int				ft_printf(const char *format, ...)
 
 int				main(void)
 {
-	printf("ret = %d\n\n", ft_printf("hello les %.8d\n", 4));
-	printf("ret = %d\n\n", printf("hello les %.8d\n", 4));
+	char		*ptr;
+	char		**adress;
+
+	adress = &ptr;
+	ft_putstr((char *)adress);
+	printf("ret = %d\n\n", ft_printf("hello les %p\n", ptr));
+	printf("ret = %d\n\n", printf("hello les %p\n", ptr));
 	return (0);
 }
