@@ -16,6 +16,8 @@
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
 
+#define mask2 = 
+
 typedef struct 	s_flag
 {
 	int			diez;
@@ -43,6 +45,7 @@ typedef struct 	s_data
 	char		modifier;
 	char		*setting;
 	char		*form;
+	int			mask;
 	int			len_setting;
 	int			len;
 	char		*final_string;
@@ -53,7 +56,9 @@ void			shear_setting(t_data *data);
 void			add_precision(t_data *data, char **str);
 void		print_hexa(t_data *data, va_list arg);
 void 			add_zero(char **str);
-
+void		print_c(t_data *data, va_list arg);
+void			print_s(t_data *data, va_list arg);
+void	print_wchar(t_data *data, va_list arg);
 void		add_diez(char **line);
 void		print_ptr(t_data *data, va_list arg);
 void			print_octal(t_data *data, va_list arg);

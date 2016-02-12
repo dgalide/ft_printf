@@ -15,7 +15,9 @@
 
 void				refresh_string(t_data *data, va_list arg)
 {
-	if (data->modifier == 'd' || data->modifier == 'u' || data->modifier == 'i')
+	if (data->modifier == 'd' || data->modifier == 'u' ||\
+	 	data->modifier == 'i' || data->modifier == 'D' ||\
+	 	data->modifier == 'U')
 		print_d(data, arg);
 	if (data->modifier == 'x' || data->modifier == 'X')
 		print_hexa(data, arg);
@@ -23,6 +25,12 @@ void				refresh_string(t_data *data, va_list arg)
 		print_octal(data, arg);
 	if (data->modifier == 'p')
 		print_ptr(data, arg);
+	if (data->modifier == 's')
+		print_s(data, arg);
+	if (data->modifier == 'c')
+		print_c(data, arg);
+	if (data->modifier == 'C')
+		print_wchar(data, arg);
 }
 
 int				get_side(t_data *data, int j, int i)
@@ -80,16 +88,11 @@ int				ft_printf(const char *format, ...)
 	get_side(data, j, i);
 	ft_putstr(data->final_string);
 	return (ft_strlen(data->final_string));
-}
+} 
 
-int				main(void)
+int				main(int argc, char **argv)
 {
-	char		*ptr;
-	char		**adress;
-
-	adress = &ptr;
-	ft_putstr((char *)adress);
-	printf("ret = %d\n\n", ft_printf("hello les %p\n", ptr));
-	printf("ret = %d\n\n", printf("hello les %p\n", ptr));
+	printf("ret = %d\n\n", ft_printf("hello les %c\n", 'c'));
+	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
 	return (0);
 }

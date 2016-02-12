@@ -24,7 +24,10 @@ SRC =	main.c 			\
 		flag.c 			\
 		print_hexa.c 	\
 		print_octal.c 	\
-		print_ptr.c
+		print_ptr.c 	\
+		print_s.c 		\
+		print_c.c 		\
+		print_wchar_t.c
 
 FLAG = -Wall -Werror -Wextra
 
