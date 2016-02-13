@@ -30,6 +30,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *newi);
 void				ft_lstiter(t_list *alst, void (*f)(t_list *elem));
 
+long				ft_power(int n, int power);
 void				erase_char(char **line, char c, int start);
 void				ft_printtab(char **tab);
 void				ft_putchar_fd(char c, int fd);
@@ -58,6 +59,7 @@ int					ft_lenwords(const char *s, char c, int word);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int 				ft_atoi_base(char *str, int base);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);

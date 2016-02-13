@@ -33,7 +33,7 @@ void				refresh_string(t_data *data, va_list arg)
 		print_wchar(data, arg);
 }
 
-int				get_side(t_data *data, int j, int i)
+void				get_side(t_data *data, int j, int i)
 {
 	char		*tmp;
 
@@ -41,19 +41,10 @@ int				get_side(t_data *data, int j, int i)
 	if (i > j)
 	{
 		if (tmp)
-		{
-			data->final_string = ft_strjoin(data->final_string,\
-			ft_strsub(data->form, j, i - j));
-			return (1);
-		}
+			data->final_string = ft_strjoin(data->final_string, ft_strsub(data->form, j, i - j));
 		else
-		{
 			data->final_string = ft_strsub(data->form, j, i - j);
-			return (1);
-		}
 	}
-	else
-		return (1);
 }
 
 int				ft_printf(const char *format, ...)
@@ -67,7 +58,6 @@ int				ft_printf(const char *format, ...)
 	j = 0;
 	va_start(arg, format);
 	data = load_struct(format);
-
 	while (format[i])
 	{
 		if (format[i + 1] && format[i] == '%' && format[i + 1] == '%')
@@ -81,7 +71,7 @@ int				ft_printf(const char *format, ...)
 			i += data->len_setting;
 			shear_setting(data);
 			get_precision_len(data);
-			refresh_string(data, arg);\
+			refresh_string(data, arg);
 		}
 		i++;
 	}
@@ -90,9 +80,9 @@ int				ft_printf(const char *format, ...)
 	return (ft_strlen(data->final_string));
 } 
 
-int				main(int argc, char **argv)
+int				main(void)
 {
-	printf("ret = %d\n\n", ft_printf("hello les %c\n", 'c'));
-	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
+	printf("ret = %d\n\n", ft_printf("hello les %C\n", L'∆'));
+//	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
 	return (0);
 }

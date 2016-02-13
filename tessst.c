@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   tessst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/30 17:17:51 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/01 05:11:45 by dgalide          ###   ########.fr       */
+/*   Created: 2016/02/13 11:13:34 by dgalide           #+#    #+#             */
+/*   Updated: 2016/02/13 11:20:09 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft/includes/libft.h"
+#include <stdio.h>
 
-char	*ft_strdup(char *str)
+int		main(void)
 {
-	int		i;
-	char	*dup;
+	char *test = "456";
 
-	i = 0;
-	if (!str)
-		return (NULL);
-	dup = (char *)malloc(ft_strlen(str) + 1);
-	if (dup == NULL)
-		return (NULL);
-	else
-	{
-		while (str[i])
-		{
-			dup[i] = str[i];
-			i++;
-		}
-		dup[i] = '\0';
-		return (dup);
-	}
+	printf("%d\n", ft_atoi(test));
+	return (0);
 }

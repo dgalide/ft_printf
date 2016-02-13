@@ -45,6 +45,7 @@ typedef struct 	s_data
 	char		modifier;
 	char		*setting;
 	char		*form;
+	int			len_wchar;
 	int			mask;
 	int			len_setting;
 	int			len;
@@ -56,6 +57,7 @@ void			shear_setting(t_data *data);
 void			add_precision(t_data *data, char **str);
 void		print_hexa(t_data *data, va_list arg);
 void 			add_zero(char **str);
+void	print_wchar(t_data *data, va_list arg);
 void		print_c(t_data *data, va_list arg);
 void			print_s(t_data *data, va_list arg);
 void	print_wchar(t_data *data, va_list arg);
@@ -73,7 +75,6 @@ int				search_modifier(t_data *data);
 int				search(t_data *data, int i);
 void			print_d(t_data *data, va_list arg);
 int				get_precision_len(t_data *data);
-void			get_rest(t_data *data, const char *format, int start, int i);
 t_data			*load_struct(const char *format);
 int				check_setting(char *format, int i);
 
