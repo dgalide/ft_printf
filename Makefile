@@ -12,7 +12,7 @@
 
 NAME = printf
 
-LIB = Libft/libft.a
+LIB = libft/libft.a
 
 SRC =	main.c 			\
 		load_struct.c 	\
@@ -34,14 +34,14 @@ FLAG = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
-	make -C Libft
+	make -C libft
 	gcc -g -o $(NAME) $(FLAG) $(SRC) $(LIB)
 
 clean:
-	make -C Libft clean
+	make -C libft clean
 
 fclean: clean
-	make -C Libft fclean
+	make -C libft fclean
 	/bin/rm -f $(NAME)
 
 re: fclean all

@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <wchar.h>
 #define M2 "110xxxxx10xxxxxx"
-#define M3 "1110xxxx10xxxxxx10xxxxxx"
+#define M3 "1110xxx10xxxxxxx10xxxxxx"
 #define M4 "11110xxx10xxxxxx10xxxxxx10xxxxxx"
 
 int 	check_mask(wchar_t chr)
@@ -27,7 +27,7 @@ int 	check_mask(wchar_t chr)
 		return (3);
 	else
 		return (4);
-}
+} 
 
 void	bin_to_unicode_mask(char *mask, char **str)
 {
@@ -36,27 +36,30 @@ void	bin_to_unicode_mask(char *mask, char **str)
 	int i;
 	int j;
 
+	printf("binary mask = %s\nbinary value = %s\n", mask, *str);
 	j = ft_strlen(mask) - 1;
 	i = ft_strlen(*str) - 1;
 	tmp = ft_strdup(*str);
-	bin = ft_strnew(j + 1);
+	bin = ft_memalloc(j + 1);
+	printf("bin tmp = %s\n len final bin = %d\n", tmp, (j + 1));
 	while (tmp[i])
 	{
-		if (mask[j] == 'x' && tmp[i] == '1')
-			bin[j] = '1';
-		else if (mask[j] == 'x' && tmp[i] == '0')
-			bin[j] = '0';
+		if (mask[j] && mask[j] == 'x')
+		{
+			bin[j] = tmp[i];
+			j--;
+			i--;
+		}
 		else
+		{
 			bin[j] = mask[j];
-		i--;
-		j--;
+			j--;
+		}
 	}
-	while (mask[j])
+	while (bin[j])
 	{
-		if (mask[j] == 'x')
+		if (mask[j] && mask[j] == 'x')
 			bin[j] = '0';
-		else
-			bin[j] = mask[j];
 		j--;
 	}
 	*str = ft_strdup(bin);
@@ -85,10 +88,9 @@ void	bin_to_decimal(char **str, int i)
 	while (j < i)
 	{
 		*str[j] = ft_atoi_base(bin[j], 10);
+		ft_putstr(bin[j]);
 		j++;
 	}
-	*str[j] = '\0';
-	ft_putstr(*str);
 }
 
 void	print_wchar(t_data *data, va_list arg)
@@ -99,6 +101,8 @@ void	print_wchar(t_data *data, va_list arg)
 
 	chr = (wchar_t)va_arg(arg, void *);
 	i = check_mask(chr);
+	str = ft_itoa((intmax_t)chr, 10);
+	printf("i = %d, decimal value = %s\n", i, str);
 	str = ft_itoa((intmax_t)chr, 2);
 	if (i == 1)
 		bin_to_unicode_mask(NULL, &str);
@@ -108,6 +112,7 @@ void	print_wchar(t_data *data, va_list arg)
 		bin_to_unicode_mask(M3, &str);
 	else
 		bin_to_unicode_mask(M4, &str);
+	printf("binary final = %s\n", str);
 	data->flag->plus = 0;
 	bin_to_decimal(&str, i);
 	/*	if (data->final_string)

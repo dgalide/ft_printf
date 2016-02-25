@@ -58,9 +58,9 @@ int				ft_printf(const char *format, ...)
 	j = 0;
 	va_start(arg, format);
 	data = load_struct(format);
-	while (format[i])
+	while (i < (int)ft_strlen(format))
 	{
-		if (format[i + 1] && format[i] == '%' && format[i + 1] == '%')
+		if (i + 1 < (int)ft_strlen(format) && format[i] == '%' && format[i + 1] == '%')
 			i += 2;
 		if (format[i] == '%')
 		{
@@ -76,13 +76,13 @@ int				ft_printf(const char *format, ...)
 		i++;
 	}
 	get_side(data, j, i);
-	ft_putstr(data->final_string);
+	ft_putendl(data->final_string);
 	return (ft_strlen(data->final_string));
-} 
+}
 
 int				main(void)
 {
-	printf("ret = %d\n\n", ft_printf("hello les %C\n", L'∆'));
+	printf("ret = %d\n\n", ft_printf("%C\n", L'∆'));
 //	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
 	return (0);
 }
