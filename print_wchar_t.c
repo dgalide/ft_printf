@@ -31,34 +31,31 @@ int 	check_mask(wchar_t chr)
 
 void	bin_to_unicode_mask(char *mask, char **str)
 {
-	char	*tmp;
-	char	*bin;
+	char *bin;
+	char *tmp;
 	int i;
 	int j;
 
-	printf("binary mask = %s\nbinary value = %s\n", mask, *str);
-	j = ft_strlen(mask) - 1;
-	i = ft_strlen(*str) - 1;
+	bin = ft_strdup(mask);
 	tmp = ft_strdup(*str);
-	bin = ft_memalloc(j + 1);
-	printf("bin tmp = %s\n len final bin = %d\n", tmp, (j + 1));
+	ft_putendl(tmp);
+	j = ft_strlen(bin) - 1;
+	i = ft_strlen(tmp) - 1;
 	while (tmp[i])
 	{
-		if (mask[j] && mask[j] == 'x')
+		ft_putendl(bin);
+		if (bin[j] == 'x')
 		{
 			bin[j] = tmp[i];
-			j--;
 			i--;
+			j--;
 		}
 		else
-		{
-			bin[j] = mask[j];
 			j--;
-		}
 	}
 	while (bin[j])
 	{
-		if (mask[j] && mask[j] == 'x')
+		if (bin[j] == 'x')
 			bin[j] = '0';
 		j--;
 	}
@@ -87,34 +84,25 @@ void	bin_to_decimal(char **str, int i)
 	*str = ft_strnew(i);
 	while (j < i)
 	{
-		*str[j] = ft_atoi_base(bin[j], 10);
-		ft_putstr(bin[j]);
+		ft_putnbr(bin_to_dec(bin[j]));
+		*str[j] = bin_to_dec(bin[j]);
+		ft_putchar((*str)[j]);
+		ft_putchar('\n');
+		ft_putendl(bin[j]);
+	//	ft_putchar(*str[j]);
+	//	write(1, bin >> 8, 8);
+	//	write(1, bin, 8);
 		j++;
 	}
 }
 
 void	print_wchar(t_data *data, va_list arg)
 {
-	char		*str;
 	wchar_t 	chr;
-	int 		i;
 
 	chr = (wchar_t)va_arg(arg, void *);
-	i = check_mask(chr);
-	str = ft_itoa((intmax_t)chr, 10);
-	printf("i = %d, decimal value = %s\n", i, str);
-	str = ft_itoa((intmax_t)chr, 2);
-	if (i == 1)
-		bin_to_unicode_mask(NULL, &str);
-	else if (i == 2)
-		bin_to_unicode_mask(M2, &str);
-	else if (i == 3)
-		bin_to_unicode_mask(M3, &str);
-	else
-		bin_to_unicode_mask(M4, &str);
-	printf("binary final = %s\n", str);
-	data->flag->plus = 0;
-	bin_to_decimal(&str, i);
+	data->len_wchar = ft_putwchar(chr);
+//	write(1, str, ft_strlen(str));
 	/*	if (data->final_string)
 		data->final_string = ft_strjoin(data->final_string, str);
 		else

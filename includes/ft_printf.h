@@ -55,11 +55,13 @@ typedef struct 	s_data
 
 void			shear_setting(t_data *data);
 void			add_precision(t_data *data, char **str);
+int			ft_putwchar(wchar_t chr);
 void		print_hexa(t_data *data, va_list arg);
 void 			add_zero(char **str);
 void	print_wchar(t_data *data, va_list arg);
 void		print_c(t_data *data, va_list arg);
 void			print_s(t_data *data, va_list arg);
+int			bin_to_dec(char *bin);
 void	print_wchar(t_data *data, va_list arg);
 void		add_diez(char **line);
 void		print_ptr(t_data *data, va_list arg);

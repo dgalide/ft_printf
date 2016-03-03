@@ -6,7 +6,7 @@
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 01:22:37 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/07 19:59:16 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/03/03 19:59:59 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ int				ft_printf(const char *format, ...)
 	ft_putendl(data->final_string);
 	return (ft_strlen(data->final_string));
 }
-
+/*
 int				main(void)
 {
 	printf("ret = %d\n\n", ft_printf("%C\n", L'∆'));
 //	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
 	return (0);
-}
+}*/

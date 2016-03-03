@@ -10,9 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf
-
-LIB = libft/libft.a
+NAME = libftprintf.a
 
 SRC =	main.c 			\
 		load_struct.c 	\
@@ -27,23 +25,44 @@ SRC =	main.c 			\
 		print_ptr.c 	\
 		print_s.c 		\
 		print_c.c 		\
-		print_wchar_t.c
+		print_wchar_t.c \
+		bin_to_dec.c 	\
+		ft_putwchar.c 	\
+		erase_char.c  	\
+		ft_itoa.c 		\
+		ft_memdel.c 	\
+		ft_power.c 		\
+		ft_putchar.c 	\
+		ft_putendl.c 	\
+		ft_putnbr.c 	\
+		ft_strdup.c 	\
+		ft_strjoin.c 	\
+		ft_strlen.c 	\
+		ft_strnew.c 	\
+		ft_strsub.c 	\
+		ft_memalloc.c
+
+SRCO = $(SRC:.c=.o)
+
+INC = includes/ft_printf.h
 
 FLAG = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME):
-	make -C libft
-	gcc -g -o $(NAME) $(FLAG) $(SRC) $(LIB)
-
-clean:
-	make -C libft clean
-
-fclean: clean
-	make -C libft fclean
-	/bin/rm -f $(NAME)
-
 re: fclean all
 
-.PHONY: all clean fclean re
+.c.o:
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
+
+$(NAME): $(SRCO)
+	ar rc $@ $^
+	ranlib $@
+
+clean:
+	rm -rf $(SRCO)
+
+fclean: clean
+	rm -rf $(NAME)
+
+.PHONY: all re clean fclean
