@@ -40,7 +40,14 @@ SRC =	main.c 			\
 		ft_strlen.c 	\
 		ft_strnew.c 	\
 		ft_strsub.c 	\
-		ft_memalloc.c
+		ft_memalloc.c 	\
+		ft_atoi.c 		\
+		ft_bzero.c 		\
+		ft_putstr.c 	\
+		ft_putnbr_fd.c 	\
+		ft_putchar_fd.c \
+		ft_memcpy.c 	\
+		ft_memset.c
 
 SRCO = $(SRC:.c=.o)
 
