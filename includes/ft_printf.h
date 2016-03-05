@@ -13,10 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # include <stdarg.h>
-
-#define mask2 = 
 
 typedef struct 	s_flag
 {
@@ -53,18 +51,19 @@ typedef struct 	s_data
 	int			nb_arg;
 }				t_data;
 
-void			shear_setting(t_data *data);
 void			add_precision(t_data *data, char **str);
-int			ft_putwchar(wchar_t chr);
-void		print_hexa(t_data *data, va_list arg);
+void			process(t_data *data, va_list arg);
+void			handler_percent(t_data *data);
+int				ft_putwchar(wchar_t chr);
+void			print_hexa(t_data *data, va_list arg);
 void 			add_zero(char **str);
-void	print_wchar(t_data *data, va_list arg);
-void		print_c(t_data *data, va_list arg);
+void			print_wchar(t_data *data, va_list arg);
+void			print_c(t_data *data, va_list arg);
 void			print_s(t_data *data, va_list arg);
-int			bin_to_dec(char *bin);
-void	print_wchar(t_data *data, va_list arg);
-void		add_diez(char **line);
-void		print_ptr(t_data *data, va_list arg);
+int				bin_to_dec(char *bin);
+void			print_wchar(t_data *data, va_list arg);
+void			add_diez(char **line);
+void			print_ptr(t_data *data, va_list arg);
 void			print_octal(t_data *data, va_list arg);
 void			add_len(t_data *data, char **str);
 void			add_space(char **str);
@@ -72,8 +71,6 @@ void			add_plus(char **str);
 void			set_zero_data(t_data *data);
 int				ft_printf(const char *format, ...);
 int				ft_is_flag(char c);
-int				search_specifier(char *str, t_data *data, int start);
-int				search_modifier(t_data *data);
 int				search(t_data *data, int i);
 void			print_d(t_data *data, va_list arg);
 int				get_precision_len(t_data *data);

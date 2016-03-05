@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/27 13:58:53 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:50:26 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+void	*ft_memalloc(size_t size)
 {
-	int	j;
-	int	k;
+	void *dst;
 
-	j = 0;
-	k = i;
-	while (i > 0)
-	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
-	}
-	return ((j == k) ? 1 : 0);
+	dst = malloc(size);
+	if (!dst)
+		return (NULL);
+	else
+		ft_bzero(dst, size);
+	return (dst);
 }

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/27 13:33:00 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:50:56 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+void		*ft_memset(void *b, int c, size_t len)
 {
-	int	j;
-	int	k;
+	size_t			i;
+	unsigned char	*str;
 
-	j = 0;
-	k = i;
-	while (i > 0)
+	i = 0;
+	str = (unsigned char *)b;
+	if (len)
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		while (i < len)
+		{
+			str[i] = (unsigned char)c;
+			i++;
+		}
 	}
-	return ((j == k) ? 1 : 0);
+	return (str);
 }

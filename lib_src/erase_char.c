@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   erase_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2016/02/04 05:18:05 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:49:33 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+void				erase_char(char **str, char c, int start)
 {
-	int	j;
+	char *tmp;
+	char *tmp2;
+	int i;
 	int	k;
 
-	j = 0;
-	k = i;
-	while (i > 0)
+	i = 0;
+	k = 0;
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(*str) + 1));
+	tmp2 = ft_strdup(*str);
+	while (tmp2[k])
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		if (tmp2[k] == c && k != start)
+			k++;
+		else
+		{
+			tmp[i] = tmp2[k];
+			i++;
+			k++;
+		}
 	}
-	return ((j == k) ? 1 : 0);
+	tmp[i] = '\0';
+	ft_memdel((void **)str);
+	ft_memdel((void **)&tmp2);
+	*str = tmp;
 }

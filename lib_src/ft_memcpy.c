@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/28 17:38:40 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:50:36 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	j;
-	int	k;
+	char		*s1;
+	const char	*s2;
+	size_t		i;
 
-	j = 0;
-	k = i;
-	while (i > 0)
+	s1 = (char *)dst;
+	s2 = (const char *)src;
+	i = 0;
+	if (n == 0 || dst == src)
+		return (dst);
+	while (i < n)
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		s1[i] = s2[i];
+		i++;
 	}
-	return ((j == k) ? 1 : 0);
+	return (dst);
 }

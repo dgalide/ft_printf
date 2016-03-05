@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/27 11:38:34 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:53:04 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+char		*ft_strnew(size_t size)
 {
-	int	j;
-	int	k;
+	char *dst;
 
-	j = 0;
-	k = i;
-	while (i > 0)
-	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
-	}
-	return ((j == k) ? 1 : 0);
+	dst = (char *)ft_memalloc(size + 1);
+	if (!dst)
+		return (NULL);
+	return (dst);
 }

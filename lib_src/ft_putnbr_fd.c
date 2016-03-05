@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/30 17:05:35 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/05 01:33:06 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	int	j;
-	int	k;
+	unsigned int i;
 
-	j = 0;
-	k = i;
-	while (i > 0)
+	i = nb;
+	if (nb < 0)
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		i = nb * -1;
+		ft_putchar_fd('-', fd);
 	}
-	return ((j == k) ? 1 : 0);
+	if (i >= 10)
+	{
+		ft_putnbr_fd(i / 10, fd);
+		ft_putnbr_fd(i % 10, fd);
+	}
+	else
+	{
+		ft_putchar_fd(i + '0', fd);
+	}
 }

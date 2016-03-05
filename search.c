@@ -12,12 +12,12 @@
 
 #include "includes/ft_printf.h"
 
-int				search_specifier(char *str, t_data *data, int start)
+static int				specifier_search(char *str, t_data *data, int start)
 {
 	int			begin;
 
 	begin = start;
-	while (start < (int)ft_strlen((char *)str))
+	while (str[++start])
 	{
 		if (str[start] == 'd' || str[start] == 's' || \
 			str[start] == 'c' || str[start] == 'S' || \
@@ -25,19 +25,19 @@ int				search_specifier(char *str, t_data *data, int start)
 			str[start] == 'i' || str[start] == 'o' || \
 			str[start] == 'u' || str[start] == 'O' || \
 			str[start] == 'U' || str[start] == 'x' || \
-			str[start] == 'X' || str[start] == 'C')
+			str[start] == 'X' || str[start] == 'C' || \
+			str[start] == '%' )
 		{
 			data->modifier = str[start];
 			data->setting = ft_strsub(str, begin, (start - begin) + 1);
 			data->len_setting = ft_strlen(data->setting);
 			return (1);
 		}
-		start++;
 	}
-	return -(1);
+	return (-1);
 }
 
-int				search_modifier(t_data *data)
+static int				modifier_search(t_data *data)
 {
 	int			i;
 	int			j;
@@ -68,11 +68,33 @@ int				search_modifier(t_data *data)
 		return ((check_setting(data->setting, i) == 1) ? 1 : 0);
 }
 
+static void		flag_search(t_data *data)
+{
+	int			i;
+
+	i = 0;
+	while (data->setting[i])
+	{
+		if ((data->setting[i]) == '+')
+			data->flag->plus = 1;
+		if (data->setting[i] == '-')
+			data->flag->minus = 1;
+		if (data->setting[i] == '#')
+			data->flag->diez = 1;
+		if (data->setting[i] == '0')
+			data->flag->zero = 1;
+		if (data->setting[i] == ' ')
+			data->flag->space = 1;
+		i++;
+	}
+}
+
 int				search(t_data *data, int i)
 {
-	if (search_specifier(data->form, data, i) == 0)
+	if (specifier_search(data->form, data, i) == 0)
 		return (-1);
-	if (search_modifier(data) == 0)
+	if (modifier_search(data) == 0)
 		return (-1);
+	flag_search(data);
 	return (1);
 }

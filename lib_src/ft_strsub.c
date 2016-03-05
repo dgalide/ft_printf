@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/27 15:11:09 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:53:15 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+char		*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	int	j;
-	int	k;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
+	if (!s)
+		return (NULL);
+	if (len <= 0)
+		return (NULL);
+	if (!(str = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	i = start;
 	j = 0;
-	k = i;
-	while (i > 0)
+	while (j < len)
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		str[j] = s[i];
+		j++;
+		i++;
 	}
-	return ((j == k) ? 1 : 0);
+	str[j] = '\0';
+	return (str);
 }

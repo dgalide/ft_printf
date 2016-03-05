@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/28 15:47:44 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:52:21 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+char		*ft_strjoin(const char *s1, const char *s2)
 {
-	int	j;
-	int	k;
+	char	*str;
+	int		i;
+	int		j;
 
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
+	if (!str)
+		return (NULL);
+	i = 0;
 	j = 0;
-	k = i;
-	while (i > 0)
+	while (s1[i] && i < (int)ft_strlen(s1))
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		str[j] = s1[i];
+		i++;
+		j++;
 	}
-	return ((j == k) ? 1 : 0);
+	i = 0;
+	while (s2[i] && i < (int)ft_strlen(s2))
+	{
+		str[j] = s2[i];
+		j++;
+		i++;
+	}
+	str[j] = '\0';
+	return (str);
 }

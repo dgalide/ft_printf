@@ -14,40 +14,39 @@ NAME = libftprintf.a
 
 SRC =	main.c 			\
 		load_struct.c 	\
-		cut.c 			\
 		utils.c 		\
-		print_d.c 		\
+		handlers/print_d.c 		\
 		search.c 		\
 		get.c 			\
 		flag.c 			\
-		print_hexa.c 	\
-		print_octal.c 	\
-		print_ptr.c 	\
-		print_s.c 		\
-		print_c.c 		\
-		print_wchar_t.c \
+		handlers/print_hexa.c 	\
+		handlers/print_octal.c 	\
+		handlers/print_ptr.c 	\
+		handlers/print_s.c 		\
+		handlers/print_c.c 		\
+		handlers/print_wchar_t.c \
 		bin_to_dec.c 	\
 		ft_putwchar.c 	\
-		erase_char.c  	\
-		ft_itoa.c 		\
-		ft_memdel.c 	\
-		ft_power.c 		\
-		ft_putchar.c 	\
-		ft_putendl.c 	\
-		ft_putnbr.c 	\
-		ft_strdup.c 	\
-		ft_strjoin.c 	\
-		ft_strlen.c 	\
-		ft_strnew.c 	\
-		ft_strsub.c 	\
-		ft_memalloc.c 	\
-		ft_atoi.c 		\
-		ft_bzero.c 		\
-		ft_putstr.c 	\
-		ft_putnbr_fd.c 	\
-		ft_putchar_fd.c \
-		ft_memcpy.c 	\
-		ft_memset.c
+		lib_src/erase_char.c  	\
+		lib_src/ft_itoa.c 		\
+		lib_src/ft_memdel.c 	\
+		lib_src/ft_power.c 		\
+		lib_src/ft_putchar.c 	\
+		lib_src/ft_putendl.c 	\
+		lib_src/ft_putnbr.c 	\
+		lib_src/ft_strdup.c 	\
+		lib_src/ft_strjoin.c 	\
+		lib_src/ft_strlen.c 	\
+		lib_src/ft_strnew.c 	\
+		lib_src/ft_strsub.c 	\
+		lib_src/ft_memalloc.c 	\
+		lib_src/ft_atoi.c 		\
+		lib_src/ft_bzero.c 		\
+		lib_src/ft_putstr.c 	\
+		lib_src/ft_putnbr_fd.c 	\
+		lib_src/ft_putchar_fd.c \
+		lib_src/ft_memcpy.c 	\
+		lib_src/ft_memset.c
 
 SRCO = $(SRC:.c=.o)
 

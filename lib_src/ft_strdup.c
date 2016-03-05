@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/30 17:17:51 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/04 21:52:06 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int			check_setting(char *str, int i)
+char	*ft_strdup(char *str)
 {
-	int	j;
-	int	k;
+	int		i;
+	char	*dup;
 
-	j = 0;
-	k = i;
-	while (i > 0)
+	i = 0;
+	if (!str)
+		return (NULL);
+	dup = (char *)malloc(ft_strlen(str) + 1);
+	if (dup == NULL)
+		return (NULL);
+	else
 	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
+		while (str[i])
+		{
+			dup[i] = str[i];
+			i++;
+		}
+		dup[i] = '\0';
+		return (dup);
 	}
-	return ((j == k) ? 1 : 0);
 }

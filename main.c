@@ -13,24 +13,26 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 
-void				refresh_string(t_data *data, va_list arg)
+void				process(t_data *data, va_list arg)
 {
 	if (data->modifier == 'd' || data->modifier == 'u' ||\
 	 	data->modifier == 'i' || data->modifier == 'D' ||\
 	 	data->modifier == 'U')
 		print_d(data, arg);
-	if (data->modifier == 'x' || data->modifier == 'X')
+	else if (data->modifier == 'x' || data->modifier == 'X')
 		print_hexa(data, arg);
-	if (data->modifier == 'o' || data->modifier == 'O')
+	else if (data->modifier == 'o' || data->modifier == 'O')
 		print_octal(data, arg);
-	if (data->modifier == 'p')
+	else if (data->modifier == 'p')
 		print_ptr(data, arg);
-	if (data->modifier == 's')
+	else if (data->modifier == 's')
 		print_s(data, arg);
-	if (data->modifier == 'c')
+	else if (data->modifier == 'c')
 		print_c(data, arg);
-	if (data->modifier == 'C')
+	else if (data->modifier == 'C')
 		print_wchar(data, arg);
+	else if (data->modifier == '%')
+		handler_percent(data);
 }
 
 void				get_side(t_data *data, int j, int i)
@@ -47,6 +49,25 @@ void				get_side(t_data *data, int j, int i)
 	}
 }
 
+void			handler_percent(t_data *data)
+{
+	char *str;
+
+	str = ft_strnew(1);
+	str[0] = '%';
+	if (data->precision > (int)ft_strlen(str))
+		add_precision(data, &str);
+	if (data->len > (int)ft_strlen(str))
+	{
+		data->flag->space = 0;
+		add_len(data, &str);
+	}
+	if (data->final_string)
+		data->final_string = ft_strjoin(data->final_string, str);
+	else
+		data->final_string = ft_strdup(str);
+}
+
 int				ft_printf(const char *format, ...)
 {
 	t_data		*data;
@@ -58,25 +79,23 @@ int				ft_printf(const char *format, ...)
 	j = 0;
 	va_start(arg, format);
 	data = load_struct(format);
-	while (i < (int)ft_strlen(format))
+	while (format[i])
 	{
-		if (i + 1 < (int)ft_strlen(format) && format[i] == '%' && format[i + 1] == '%')
-			i += 2;
 		if (format[i] == '%')
 		{
 			if (search(data, i) == -1)
 				return (-1);
+			get_precision_len(data);
+			process(data, arg);
 			get_side(data, j, i);
 			j = i + data->len_setting;
 			i += data->len_setting;
-			shear_setting(data);
-			get_precision_len(data);
-			refresh_string(data, arg);
 		}
 		i++;
 	}
 	get_side(data, j, i);
-	ft_putendl(data->final_string);
+	ft_putstr(data->final_string);
+	va_end(arg);
 	return (ft_strlen(data->final_string));
 }
 /*

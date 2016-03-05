@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 00:43:31 by dgalide           #+#    #+#             */
-/*   Updated: 2016/02/05 11:09:51 by dgalide          ###   ########.fr       */
+/*   Created: 2016/02/10 05:34:04 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/05 01:30:05 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int			check_setting(char *str, int i)
+void		print_ptr(t_data *data, va_list arg)
 {
-	int	j;
-	int	k;
+    char	*str;
 
-	j = 0;
-	k = i;
-	while (i > 0)
-	{
-		if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || 
-			str[i] == ' ' || str[i] == '.' || str[i] == '#' || str[i] || str[i] == '%')
-			j++;
-		i--;
-	}
-	return ((j == k) ? 1 : 0);
+    str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
+    add_diez(&str);
+	if (data->len > (int)ft_strlen(str))
+		add_len(data, &str);
+	if (data->final_string)
+		data->final_string = ft_strjoin(data->final_string, str);
+	else
+		data->final_string = ft_strdup(str);
 }
