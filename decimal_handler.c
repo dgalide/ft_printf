@@ -32,6 +32,35 @@ static char *decimal_cast_handler(t_data *data, intmax_t decimal_nb)
 	return (str);
 }
 
+static void		decimal_precision_handler(t_data *data, char **arg)
+{
+	int i;
+	int len_arg;
+	char *tmp;
+
+	len_arg = (int)ft_strlen(*arg);
+	i = -1;
+	tmp = NULL;
+	if (data->precision && data->precision > len)
+	{
+		if (str[0] != '-' && data->flag->plus)
+			tmp = ft_strnew((data->precision - len) + 2);
+		else
+			tmp = ft_strnew((data->precision - len) + 1);
+		while (++i < (data->precision - len))
+		{
+			tmp[i] = '0';
+			if ((i + 1) == (data->precision - len) && data->flag->plus)
+				tmp[i] = '+';
+		}
+	}
+	else
+	{
+		if ()
+	}
+
+}
+
 void		decimal_handler(t_data *data, va_list arg)
 {
 	intmax_t i;
@@ -39,4 +68,5 @@ void		decimal_handler(t_data *data, va_list arg)
 
 	i = va_arg(arg, void *);
 	arg = decimal_cast_handler(data, i);
+	decimal_precision_handler(data, &arg);
 }
