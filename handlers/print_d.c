@@ -20,7 +20,8 @@ void			print_d(t_data *data, va_list arg)
 	if (data->flag->plus == 1)
 	{
 		data->flag->space = 0;
-		add_plus(&str);
+		if (str[0] != '-')
+			add_plus(&str);
 	}
 	if (data->precision > (int)ft_strlen(str))
 		add_precision(data, &str);
@@ -29,7 +30,7 @@ void			print_d(t_data *data, va_list arg)
 		data->flag->space = 0;
 		add_len(data, &str);
 	}
-	if (data->flag->space == 1)
+	if (data->flag->space == 1 && str[0] != '-')
 		add_space(&str);
 	if (data->final_string)
 		data->final_string = ft_strjoin(data->final_string, str);

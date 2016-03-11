@@ -72,8 +72,8 @@ static void		flag_search(t_data *data)
 {
 	int			i;
 
-	i = 0;
-	while (data->setting[i])
+	i = 1;
+	while (data->setting[i] && ft_is_flag(data->setting[i]))
 	{
 		if ((data->setting[i]) == '+')
 			data->flag->plus = 1;

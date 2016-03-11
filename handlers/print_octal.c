@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void 			add_zero(char **str)
+static void 			octal_zero(char **str)
 {
 	char		tmp[2];
 	char		*tmp2;
@@ -40,7 +40,7 @@ void			print_octal(t_data *data, va_list arg)
 		data->flag->diez = 0;
 	}
 	if (data->flag->diez == 1)
-		add_zero(&str);
+		octal_zero(&str);
 	if (data->final_string)
 		data->final_string = ft_strjoin(data->final_string, str);
 	else

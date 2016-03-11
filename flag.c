@@ -14,7 +14,7 @@
 
 int				ft_is_flag(char c)
 {
-	if (c == ' ' || c == '+' || c == '-' || c == '0')
+	if (c == ' ' || c == '+' || c == '-' || c == '0' || c == '#')
 		return (1);
 	else
 		return (0);
@@ -57,8 +57,6 @@ void			add_precision(t_data *data, char **str)
 		tmp[j] = '\0';
 		tmp2 = *str;
 		*str = ft_strjoin(tmp, ft_strsub(*str, 1, (ft_strlen(*str) - 1)));
-		ft_memdel((void *)&tmp);
-		ft_memdel((void *)&tmp2);
 	}
 	else if (data->flag->plus == 0 && data->precision > (int)ft_strlen(tmp2))
 	{
@@ -73,8 +71,6 @@ void			add_precision(t_data *data, char **str)
 		tmp[j] = '\0';
 		tmp2 = *str;
 		*str = ft_strjoin(tmp, *str);
-		ft_memdel((void *)&tmp);
-		ft_memdel((void *)&tmp2);
 	}
 }
 
@@ -94,19 +90,22 @@ void			add_len(t_data *data, char **str)
 		tmp[i] = '\0';
 		tmp2 = *str;
 		*str = ft_strdup(tmp);
-		ft_memdel((void *)&tmp);
-		ft_memdel((void *)&tmp2);
 	}
 	else
 	{
 		i = -1;
 		while (++i < (int)(data->len - ft_strlen(*str)))
-			tmp[i] = ' ';
+		{
+			if (data->flag->zero == 1 && (data->modifier == 'o' || data->modifier == 'O' || data->modifier == 'X' || data->modifier == 'x'))
+				tmp[i] = '0';
+			else
+				tmp[i] = ' ';
+		}
 		tmp[i] = '\0';
 		tmp2 = *str;
 		*str = ft_strjoin(tmp, *str);
-		ft_memdel((void *)&tmp);
-		ft_memdel((void *)&tmp2);
+		if (data->flag->diez == 1 && (data->modifier == 'X' || data->modifier == 'x')
+			replace_diez(str);
 	}
 }
 

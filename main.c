@@ -85,11 +85,12 @@ int				ft_printf(const char *format, ...)
 		{
 			if (search(data, i) == -1)
 				return (-1);
+			get_side(data, j, i);
 			get_precision_len(data);
 			process(data, arg);
-			get_side(data, j, i);
 			j = i + data->len_setting;
 			i += data->len_setting;
+			set_zero_data(data);
 		}
 		i++;
 	}
