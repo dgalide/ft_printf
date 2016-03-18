@@ -40,6 +40,7 @@ SRC =	main.c 			\
 		lib_src/ft_putnbr_fd.c 	\
 		lib_src/ft_putchar_fd.c \
 		lib_src/ft_memcpy.c 	\
+		lib_src/ft_isdigit.c 	\
 		lib_src/ft_memset.c
 #		handlers/print_hexa.c 	\
 #		handlers/print_octal.c 	\

@@ -42,7 +42,7 @@ int				get_precision_len(t_data *data)
 		{
 			i++;
 			j = i;
-			if (data->setting[i] == '0')
+			if (data->setting[i] == '0' || ft_isdigit(data->setting[i]) == 0)
 				data->precision_NULL = 1;
 			while (data->setting[i] >= '0' && data->setting[i] <= '9')
 				i++;
