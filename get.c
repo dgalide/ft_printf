@@ -42,6 +42,8 @@ int				get_precision_len(t_data *data)
 		{
 			i++;
 			j = i;
+			if (data->setting[i] == '0')
+				data->precision_NULL = 1;
 			while (data->setting[i] >= '0' && data->setting[i] <= '9')
 				i++;
 			data->precision = ft_atoi(ft_strsub(tmp, j, i - j));
@@ -51,7 +53,7 @@ int				get_precision_len(t_data *data)
 			j = i;
 			while (data->setting[i] >= '0' && data->setting[i] <= '9')
 				i++;
-			data->len = ft_atoi(ft_strsub(data->setting, j, (i - j)));
+			data->minimal_range = ft_atoi(ft_strsub(data->setting, j, (i - j)));
 			i--;
 		}
 		i++;

@@ -15,16 +15,10 @@ NAME = libftprintf.a
 SRC =	main.c 			\
 		load_struct.c 	\
 		utils.c 		\
-		handlers/print_d.c 		\
 		search.c 		\
 		get.c 			\
 		flag.c 			\
-		handlers/print_hexa.c 	\
-		handlers/print_octal.c 	\
-		handlers/print_ptr.c 	\
-		handlers/print_s.c 		\
-		handlers/print_c.c 		\
-		handlers/print_wchar_t.c \
+		handlers/decimal_handler.c \
 		bin_to_dec.c 	\
 		ft_putwchar.c 	\
 		lib_src/erase_char.c  	\
@@ -36,17 +30,23 @@ SRC =	main.c 			\
 		lib_src/ft_putnbr.c 	\
 		lib_src/ft_strdup.c 	\
 		lib_src/ft_strjoin.c 	\
-		lib_src/ft_strlen.c 	\
 		lib_src/ft_strnew.c 	\
 		lib_src/ft_strsub.c 	\
 		lib_src/ft_memalloc.c 	\
 		lib_src/ft_atoi.c 		\
 		lib_src/ft_bzero.c 		\
+		lib_src/ft_strlen.c 	\
 		lib_src/ft_putstr.c 	\
 		lib_src/ft_putnbr_fd.c 	\
 		lib_src/ft_putchar_fd.c \
 		lib_src/ft_memcpy.c 	\
 		lib_src/ft_memset.c
+#		handlers/print_hexa.c 	\
+#		handlers/print_octal.c 	\
+#		handlers/print_ptr.c 	\
+#		handlers/print_s.c 		\
+#		handlers/print_c.c 		\
+#		handlers/print_wchar_t.c \
 
 SRCO = $(SRC:.c=.o)
 

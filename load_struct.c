@@ -28,12 +28,13 @@ void			set_zero_data(t_data *data)
 		data->specifier->j = 0;
 		data->specifier->z = 0;
 		data->precision = 0;
+		data->precision_NULL = 0;
 		data->modifier = 0;
 		data->mask = 0;
 		data->len_wchar = 0;
 		data->len_setting = 0;
 		data->setting = NULL;
-		data->len = 0;
+		data->minimal_range = 0;
 	}
 }
 

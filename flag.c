@@ -20,20 +20,6 @@ int				ft_is_flag(char c)
 		return (0);
 }
 
-void			add_plus(char **str)
-{
-	char		*tmp;
-	char		*tmp2;
-
-	tmp = (char *)malloc(sizeof(char) * 2);
-	tmp[0] = '+';
-	tmp[1] = '\0';
-	tmp2 = *str;
-	*str = ft_strjoin(tmp, *str);
-	ft_memdel((void *)&tmp);
-	ft_memdel((void *)&tmp2);
-}
-
 void			add_precision(t_data *data, char **str)
 {
 	int			i;
@@ -80,12 +66,12 @@ void			add_len(t_data *data, char **str)
 	char		*tmp2;
 	int			i;
 
-	tmp = (char *)malloc(sizeof(char) * data->len + 1);
+	tmp = (char *)malloc(sizeof(char) * data->minimal_range + 1);
 	if (data->flag->minus == 1)
 	{
 		tmp = ft_memcpy((char *)tmp, (char *)*str, ft_strlen((char *)*str));
 		i = ft_strlen(*str) - 1;
-		while (++i < data->len)
+		while (++i < data->minimal_range)
 			tmp[i] = ' ';
 		tmp[i] = '\0';
 		tmp2 = *str;
@@ -94,7 +80,7 @@ void			add_len(t_data *data, char **str)
 	else
 	{
 		i = -1;
-		while (++i < (int)(data->len - ft_strlen(*str)))
+		while (++i < (int)(data->minimal_range - ft_strlen(*str)))
 		{
 			if (data->flag->zero == 1 && (data->modifier == 'o' || data->modifier == 'O' || data->modifier == 'X' || data->modifier == 'x'))
 				tmp[i] = '0';
@@ -104,8 +90,6 @@ void			add_len(t_data *data, char **str)
 		tmp[i] = '\0';
 		tmp2 = *str;
 		*str = ft_strjoin(tmp, *str);
-		if (data->flag->diez == 1 && (data->modifier == 'X' || data->modifier == 'x')
-			replace_diez(str);
 	}
 }
 

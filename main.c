@@ -18,8 +18,8 @@ void				process(t_data *data, va_list arg)
 	if (data->modifier == 'd' || data->modifier == 'u' ||\
 	 	data->modifier == 'i' || data->modifier == 'D' ||\
 	 	data->modifier == 'U')
-		print_d(data, arg);
-	else if (data->modifier == 'x' || data->modifier == 'X')
+		decimal_handler(data, arg);
+/*	else if (data->modifier == 'x' || data->modifier == 'X')
 		print_hexa(data, arg);
 	else if (data->modifier == 'o' || data->modifier == 'O')
 		print_octal(data, arg);
@@ -32,7 +32,7 @@ void				process(t_data *data, va_list arg)
 	else if (data->modifier == 'C')
 		print_wchar(data, arg);
 	else if (data->modifier == '%')
-		handler_percent(data);
+		handler_percent(data); */
 }
 
 void				get_side(t_data *data, int j, int i)
@@ -57,7 +57,7 @@ void			handler_percent(t_data *data)
 	str[0] = '%';
 	if (data->precision > (int)ft_strlen(str))
 		add_precision(data, &str);
-	if (data->len > (int)ft_strlen(str))
+	if (data->minimal_range > (int)ft_strlen(str))
 	{
 		data->flag->space = 0;
 		add_len(data, &str);
