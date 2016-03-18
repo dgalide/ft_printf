@@ -20,7 +20,7 @@ static char 	*decimal_cast_handler(t_data *data, intmax_t decimal_nb)
 	if (data->specifier->h)
 		str = ft_itoa((short int)decimal_nb, 10);
 	else if (data->specifier->hh)
-		str = ft_itoa((unsigned char)decimal_nb, 10);
+		str = ft_itoa((signed char)decimal_nb, 10);
 	else if (data->specifier->l)
 		str = ft_itoa((long int)decimal_nb, 10);
 	else if (data->specifier->ll)
