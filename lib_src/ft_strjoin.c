@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+#include <stdio.h>
 
 char		*ft_strjoin(const char *s1, const char *s2)
 {
@@ -18,9 +19,7 @@ char		*ft_strjoin(const char *s1, const char *s2)
 	int		i;
 	int		j;
 
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	str = ft_strnew(i + j);
+	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
 	i = 0;
 	j = 0;
 	while (s1 && s1[i])
@@ -34,5 +33,32 @@ char		*ft_strjoin(const char *s1, const char *s2)
 		j++;
 		i++;
 	}
+	return (str);
+}
+
+char		*ft_strjoin_free(char **s1, char **s2, int bool_s1, int bool_s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	str = ft_strnew(ft_strlen(*s1) + ft_strlen(*s2));
+	i = 0;
+	j = 0;
+	while ((*s1) && (*s1)[i])
+	{
+		str[i] = (*s1)[i];
+		i++;
+	}
+	if (bool_s1 && (*s1))
+		ft_memdel((void **)s1);
+	while ((*s2) && (*s2)[j])
+	{
+		str[i] = (*s2)[j];
+		j++;
+		i++;
+	}
+	if (bool_s2 && (*s2))
+		ft_memdel((void **)s2);
 	return (str);
 }

@@ -38,10 +38,10 @@ typedef struct  s_spec
 typedef struct 	s_data
 {
 	t_flag		*flag;
-	int			precision;
-	int			precision_NULL;
 	t_spec		*specifier;
 	char		modifier;
+	int			precision;
+	int			precision_NULL;
 	char		*setting;
 	char		*form;
 	int			len_wchar;
