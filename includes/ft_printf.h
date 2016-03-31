@@ -56,7 +56,7 @@ void			add_precision(t_data *data, char **str);
 void			decimal_handler(t_data *data, va_list arg);
 int				ft_isdigit(int c);
 void			process(t_data *data, va_list arg);
-void			handler_percent(t_data *data);
+void			percent_handler(t_data *data);
 int				ft_putwchar(wchar_t chr);
 void			print_hexa(t_data *data, va_list arg);
 void 			add_zero(char **str, t_data *data);

@@ -30,9 +30,9 @@ void				process(t_data *data, va_list arg)
 	else if (data->modifier == 'c')
 		print_c(data, arg);
 	else if (data->modifier == 'C')
-		print_wchar(data, arg);
+		print_wchar(data, arg); */
 	else if (data->modifier == '%')
-		handler_percent(data); */
+		percent_handler(data);
 }
 
 void				get_side(t_data *data, int j, int i)

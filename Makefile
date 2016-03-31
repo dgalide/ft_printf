@@ -19,6 +19,7 @@ SRC =	main.c 			\
 		get.c 			\
 		flag.c 			\
 		handlers/decimal_handler.c \
+		handlers/percent_handler.c \
 		bin_to_dec.c 	\
 		ft_putwchar.c 	\
 		lib_src/erase_char.c  	\

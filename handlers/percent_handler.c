@@ -10,23 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void		percent_handler(t_data *data, va_list arg)
+void		percent_handler(t_data *data)
 {
 	char *arg;
 	char *tmp;
 
-	arg = ft_strnew(1);
-	arg = ft_memset('%', 1);
+	arg = ft_memset(ft_strnew(1), '%', 1);
 	tmp = NULL;
 	if (data->minimal_range)
 	{
 		tmp = ft_memset(ft_strnew(data->minimal_range - 1), ' ',
 				data->minimal_range - 1);
 		if (data->flag->minus)
-			arg = ft_strjoin(arg, tmp);
+			arg = ft_strjoin_free(&arg, &tmp, 1, 1);
 		else
-			arg = ft_strjoin(tmp, arg);
+			arg = ft_strjoin_free(&tmp, &arg, 1, 1);
 	}
+	data->final_string = ft_strjoin_free(&data->final_string, &arg, 1, 1);
 }
