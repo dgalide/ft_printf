@@ -34,6 +34,45 @@ static char *cast_handler(t_data *data, unsigned long long n)
 	return (str);
 }
 
+static void unsigned_precision_handler(t_data *data, char **arg)
+{
+	char *tmp;
+	int i;
+
+	i = data->precision - (int)ft_strlen(*arg);
+	tmp = NULL;
+	if (data->precision_NULL && *arg[0] == '0')
+		ft_memdel((void **)arg);
+	if (data->precision > (int)ft_strlen(*arg))
+	{
+		tmp = ft_memset(ft_strnew(i), '0', i);
+		*arg = ft_strjoin_free(&tmp, arg, 1, 1);
+	}
+}
+
+static void unsigned_range_handler(t_data *data, char **arg)
+{
+	char *tmp;
+	int i;
+
+	i = data->minimal_range - (int)ft_strlen(*arg);
+	tmp = NULL;
+	if (data->minimal_range > (int)ft_strlen(*arg))
+	{
+		if (data->flag->zero)
+			tmp = ft_memset(ft_strnew(i), '0', i);
+		else
+			tmp = ft_memset(ft_strnew(i), ' ', i);
+		if (data->flag->minus)
+		{
+			tmp = ft_memset(tmp, ' ', i);
+			*arg = ft_strjoin_free(arg, &tmp, 1, 1);
+		}
+		else
+			*arg = ft_strjoin_free(&tmp, arg, 1, 1);
+	}
+}
+
 void	unsigned_decimal_handler(t_data *data, va_list arg)
 {
 	unsigned long long n;
@@ -41,5 +80,7 @@ void	unsigned_decimal_handler(t_data *data, va_list arg)
 
 	n = (unsigned long long)va_arg(arg, void *);
 	str = cast_handler(data, n);
+	unsigned_precision_handler(data, &str);
+	unsigned_range_handler(data, &str);
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }

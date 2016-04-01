@@ -44,7 +44,8 @@ int	main(void)
 	printf("TEST 4 :\n Parameter = \"%%.5%%\"-->%.5%\n");
 	printf("TEST 5 :\n Parameter = \"%%-5%%\"-->%-5%\n");
 	printf("TEST 6 :\n Parameter = \"%%-.5%%\"-->%-.5%\n");
-
+	printf("\n\n\t\t\t\tUNSIGNED CONVERT : \n\n");
+	printf("TEST 1 : \n Parameter = \".0u\" Argument = 0\t\t --> \"%.0u\"\n", 0);
 }
 
 
