@@ -38,11 +38,12 @@ void		add_plus(char **str, t_data *data)
 {
 	char *tmp;
 
+	tmp = NULL;
 	if (*str[0] && *str[0] != '-' && data->flag->plus)
 	{
 		tmp = ft_strnew(1);
 		tmp = ft_memset(tmp, '+', 1);
-		*str = ft_strjoin(tmp, *str);
+		*str = ft_strjoin_free(&tmp, str, 1, 1);
 	}
 }
 
@@ -50,7 +51,6 @@ static void		decimal_precision_handler(t_data *data, char **arg)
 {
 	int i;
 	int len_arg;
-	int len_tmp;
 	char *tmp;
 
 	len_arg = (int)ft_strlen(*arg);
@@ -73,7 +73,7 @@ static void		decimal_precision_handler(t_data *data, char **arg)
 			*arg[0] = '0';
 			tmp[0] = '-';
 		}
-		*arg = ft_strjoin(tmp, *arg);
+		*arg = ft_strjoin_free(&tmp, arg, 1, 1);
 	}
 	if (data->flag->plus == 1)
 		add_plus(arg, data);
@@ -102,15 +102,15 @@ static void		decimal_range_handler(t_data *data, char **arg)
 				*arg[0] = '0';
 				tmp[0] = '-';
 			}
-			*arg = ft_strjoin(tmp, *arg);
+			*arg = ft_strjoin_free(&tmp, arg, 1, 1);
 		}
 		else
 		{
 			tmp = ft_memset(tmp, ' ', (data->minimal_range - len_arg));
 			if (data->flag->minus == 1)
-				*arg = ft_strjoin(*arg, tmp);
+				*arg = ft_strjoin_free(arg, &tmp, 1, 1);
 			else
-				*arg = ft_strjoin(tmp, *arg);
+				*arg = ft_strjoin_free(&tmp, arg, 1, 1);
 		}
 	}
 }
@@ -124,8 +124,5 @@ void		decimal_handler(t_data *data, va_list arg)
 	str = decimal_cast_handler(data, i);
 	decimal_precision_handler(data, &str);
 	decimal_range_handler(data, &str);
-	if (data->final_string)
-		data->final_string = ft_strjoin(data->final_string, str);
-	else
-		data->final_string = ft_strdup(str);
+	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }
