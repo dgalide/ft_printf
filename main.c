@@ -15,10 +15,10 @@
 
 void				process(t_data *data, va_list arg)
 {
-	if (data->modifier == 'd' || data->modifier == 'u' ||\
-	 	data->modifier == 'i' || data->modifier == 'D' ||\
-	 	data->modifier == 'U')
+	if (data->modifier == 'd' || data->modifier == 'i' || data->modifier == 'D')
 		decimal_handler(data, arg);
+	if (data->modifier == 'u' || data->modifier == 'U')
+		unsigned_decimal_handler(data, arg);
 /*	else if (data->modifier == 'x' || data->modifier == 'X')
 		print_hexa(data, arg);
 	else if (data->modifier == 'o' || data->modifier == 'O')
