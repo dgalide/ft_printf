@@ -46,6 +46,12 @@ int	main(void)
 	printf("TEST 6 :\n Parameter = \"%%-.5%%\"-->%-.5%\n");
 	printf("\n\n\t\t\t\tUNSIGNED CONVERT : \n\n");
 	printf("TEST 1 : \n Parameter = \".0u\" Argument = 0\t\t --> \"%.0u\"\n", 0);
+	printf("\n\n\t\t\t\tHEXADECIMAL CONVERT : \n\n");
+	printf("TEST 1 : \n Parameter = \"#3x\" Argument = 42\t\t --> \"%#3x\"\n", 42);
+	printf("TEST 2 : \n Parameter = \"#.6x\" Argument = 42\t\t --> \"%#.6x\"\n", 42);
+	printf("TEST 3 : \n Parameter = \"#10.6x\" Argument = 42\t\t --> \"%#10.6x\"\n", 42);
+	printf("TEST 4 : \n Parameter = \"#010x\" Argument = 42\t\t --> \"%#010x\"\n", 42);
+
 }
 
 

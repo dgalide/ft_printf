@@ -21,6 +21,7 @@ SRC =	main.c 			\
 		handlers/unsigned_decimal_handler.c \
 		handlers/decimal_handler.c \
 		handlers/percent_handler.c \
+		handlers/hexadecimal_handler.c \
 		bin_to_dec.c 	\
 		ft_putwchar.c 	\
 		lib_src/erase_char.c  	\

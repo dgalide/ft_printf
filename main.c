@@ -19,9 +19,9 @@ void				process(t_data *data, va_list arg)
 		decimal_handler(data, arg);
 	if (data->modifier == 'u' || data->modifier == 'U')
 		unsigned_decimal_handler(data, arg);
-/*	else if (data->modifier == 'x' || data->modifier == 'X')
-		print_hexa(data, arg);
-	else if (data->modifier == 'o' || data->modifier == 'O')
+	else if (data->modifier == 'x' || data->modifier == 'X')
+		hexadecimal_handler(data, arg);
+/*	else if (data->modifier == 'o' || data->modifier == 'O')
 		print_octal(data, arg);
 	else if (data->modifier == 'p')
 		print_ptr(data, arg);

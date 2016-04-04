@@ -55,6 +55,7 @@ typedef struct 	s_data
 void			add_precision(t_data *data, char **str);
 void			decimal_handler(t_data *data, va_list arg);
 void			unsigned_decimal_handler(t_data *data, va_list arg);
+void		hexadecimal_handler(t_data *data, va_list arg);
 int				ft_isdigit(int c);
 void			process(t_data *data, va_list arg);
 void			percent_handler(t_data *data);
@@ -66,7 +67,6 @@ void			print_c(t_data *data, va_list arg);
 void			print_s(t_data *data, va_list arg);
 int				bin_to_dec(char *bin);
 void			print_wchar(t_data *data, va_list arg);
-void			add_diez(char **line, t_data *data);
 void			print_ptr(t_data *data, va_list arg);
 void			print_octal(t_data *data, va_list arg);
 void			add_len(t_data *data, char **str);
