@@ -34,6 +34,55 @@ static char *cast_handler(t_data *data, intmax_t n)
 	return (str);
 }
 
+static void add_diez(char **str, t_data *data)
+{
+	char *tmp;
+
+	tmp = NULL;
+	if (data->flag->diez)
+	{
+		tmp = ft_memset(ft_strnew(1), '0', 1);
+		(*str) = ft_strjoin_free(&tmp, str, 1, 1);
+	}
+}
+
+static void	precision_octal_handler(t_data *data, char **str)
+{
+	char *tmp;
+	int n;
+
+	n = data->precision - (int)ft_strlen((*str));
+	tmp = NULL;
+	if (n > 0)
+	{
+		tmp = ft_memset(ft_strnew(n), '0', n);
+		(*str) = ft_strjoin_free(&tmp, str, 1, 1);
+	}
+}
+
+static void range_octal_handler(t_data *data, char **str)
+{
+	char *tmp;
+	int n;
+
+	n = data->minimal_range - (int)ft_strlen((*str));
+	tmp = NULL;
+	if (n > 0)
+	{
+		tmp = ft_memset(ft_strnew(n), ' ', n);
+		if (data->flag->minus)
+			(*str) = ft_strjoin_free(str, &tmp, 1, 1);
+		else
+		{
+			if (data->flag->zero)
+				tmp = ft_memset(tmp, '0', n);
+			(*str) = ft_strjoin_free(&tmp, str, 1, 1);
+		}
+
+	}
+
+}
+
 void	octal_handler(t_data *data, va_list arg)
 {
 	char *str;
@@ -41,5 +90,8 @@ void	octal_handler(t_data *data, va_list arg)
 
 	n = (intmax_t)va_arg(arg, void *);
 	str = cast_handler(data, n);
+	add_diez(&str, data);
+	precision_octal_handler(data, &str);
+	range_octal_handler(data, &str);
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }
