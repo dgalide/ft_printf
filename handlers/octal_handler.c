@@ -39,7 +39,7 @@ static void add_diez(char **str, t_data *data)
 	char *tmp;
 
 	tmp = NULL;
-	if (data->flag->diez && (*str))
+	if (data->flag->diez)	
 	{
 		tmp = ft_memset(ft_strnew(1), '0', 1);
 		(*str) = ft_strjoin_free(&tmp, str, 1, 1);
