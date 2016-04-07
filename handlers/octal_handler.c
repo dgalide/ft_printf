@@ -39,7 +39,7 @@ static void add_diez(char **str, t_data *data)
 	char *tmp;
 
 	tmp = NULL;
-	if (data->flag->diez)
+	if (data->flag->diez && (*str))
 	{
 		tmp = ft_memset(ft_strnew(1), '0', 1);
 		(*str) = ft_strjoin_free(&tmp, str, 1, 1);
@@ -90,6 +90,8 @@ void	octal_handler(t_data *data, va_list arg)
 
 	n = (intmax_t)va_arg(arg, void *);
 	str = cast_handler(data, n);
+	if (data->precision_NULL && str[0] == '0')
+		ft_memdel((void **)&str);
 	add_diez(&str, data);
 	precision_octal_handler(data, &str);
 	range_octal_handler(data, &str);
