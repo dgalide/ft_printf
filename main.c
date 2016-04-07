@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -21,8 +21,8 @@ void				process(t_data *data, va_list arg)
 		unsigned_decimal_handler(data, arg);
 	else if (data->modifier == 'x' || data->modifier == 'X')
 		hexadecimal_handler(data, arg);
-/*	else if (data->modifier == 'o' || data->modifier == 'O')
-		print_octal(data, arg);
+	else if (data->modifier == 'o' || data->modifier == 'O')
+		octal_handler(data, arg);
 	else if (data->modifier == 'p')
 		print_ptr(data, arg);
 	else if (data->modifier == 's')
@@ -30,7 +30,7 @@ void				process(t_data *data, va_list arg)
 	else if (data->modifier == 'c')
 		print_c(data, arg);
 	else if (data->modifier == 'C')
-		print_wchar(data, arg); */
+		print_wchar(data, arg);
 	else if (data->modifier == '%')
 		percent_handler(data);
 }

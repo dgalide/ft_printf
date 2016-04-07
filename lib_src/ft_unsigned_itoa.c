@@ -19,8 +19,6 @@ static unsigned long long	ft_strleni(unsigned long long n, int base)
 	i = 0;
 	if (n == 0)
 		return (1);
-	if (n < 0)
-		i++;
 	while (n)
 	{
 		n = n / base;

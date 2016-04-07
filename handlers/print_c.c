@@ -18,7 +18,7 @@ void		print_c(t_data *data, va_list arg)
 
 	str = ft_strnew(1);
 	str[0] = (int)va_arg(arg, void *);
-	if (data->len > (int)ft_strlen((char *)str))
+	if (data->minimal_range > (int)ft_strlen((char *)str))
 		add_len(data, &str);
 	if (data->final_string)
 		data->final_string = ft_strjoin(data->final_string, str);

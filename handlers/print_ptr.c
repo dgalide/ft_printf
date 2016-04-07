@@ -17,8 +17,7 @@ void		print_ptr(t_data *data, va_list arg)
     char	*str;
 
     str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
-    add_diez(&str, data);
-	if (data->len > (int)ft_strlen(str))
+	if (data->minimal_range > (int)ft_strlen(str))
 		add_len(data, &str);
 	if (data->final_string)
 		data->final_string = ft_strjoin(data->final_string, str);
