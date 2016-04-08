@@ -30,7 +30,7 @@ void				process(t_data *data, va_list arg)
 	else if (data->modifier == 'c')
 		print_c(data, arg);
 	else if (data->modifier == 'C')
-		print_wchar(data, arg);
+		wchar_handler(data, arg);
 	else if (data->modifier == '%')
 		percent_handler(data);
 }
@@ -98,7 +98,7 @@ int				ft_printf(const char *format, ...)
 	get_side(data, j, i);
 	ft_putstr(data->final_string);
 	va_end(arg);
-	return (ft_strlen(data->final_string));
+	return (ft_strlen(data->final_string) + data->final_len);
 }
 /*
 int				main(void)

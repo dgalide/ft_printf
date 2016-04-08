@@ -50,6 +50,7 @@ t_data			*load_struct(const char *format)
 	data->specifier = spec;
 	data->flag = flag;
 	set_zero_data(data);
+	data->final_len = 0;
 	data->final_string = NULL;
 	data->form = ft_strdup((char *)format);
 	return (data);

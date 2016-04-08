@@ -49,11 +49,13 @@ typedef struct 	s_data
 	int			len_setting;
 	int			minimal_range;
 	char		*final_string;
+	int			final_len;
 	int			nb_arg;
 }				t_data;
 
 void			add_precision(t_data *data, char **str);
 void			decimal_handler(t_data *data, va_list arg);
+void			wchar_handler(t_data *data, va_list arg);
 void			unsigned_decimal_handler(t_data *data, va_list arg);
 void	octal_handler(t_data *data, va_list arg);
 void		hexadecimal_handler(t_data *data, va_list arg);
