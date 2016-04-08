@@ -88,11 +88,12 @@ int				ft_printf(const char *format, ...)
 			get_side(data, j, i);
 			get_precision_len(data);
 			process(data, arg);
-			j = i + data->len_setting;
 			i += data->len_setting;
+			j = i;
 			set_zero_data(data);
 		}
-		i++;
+		else
+			i++;
 	}
 	get_side(data, j, i);
 	ft_putstr(data->final_string);

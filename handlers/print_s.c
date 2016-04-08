@@ -17,17 +17,27 @@ void			cut_precision(t_data *data, char **str)
 	*str = ft_strsub(*str, 0, data->precision);
 }
 
+static void null_handler(t_data *data)
+{
+	char *str;
+
+	str = ft_strdup("(null)");
+	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+}
+
 void			print_s(t_data *data, va_list arg)
 {
 	char		*str;
 
 	str = va_arg(arg, void *);
-	if (data->precision < (int)ft_strlen((char *)str) && data->precision != 0)
-		cut_precision(data, &str);
-	if (data->minimal_range > (int)ft_strlen((char *)str))
-		add_len(data, &str);
-	if (data->final_string)
-		data->final_string = ft_strjoin(data->final_string, str);
+	if (!str || str == NULL)
+		null_handler(data);
 	else
-		data->final_string = ft_strdup(str);
+	{
+		if (data->precision < (int)ft_strlen((char *)str) && data->precision != 0)
+			cut_precision(data, &str);
+		if (data->minimal_range > (int)ft_strlen((char *)str))
+			add_len(data, &str);
+		data->final_string = ft_strjoin_free(&data->final_string, &str, 0, 0);
+	}
 }
