@@ -27,6 +27,8 @@ void				process(t_data *data, va_list arg)
 		print_ptr(data, arg);
 	else if (data->modifier == 's')
 		print_s(data, arg);
+	else if (data->modifier == 'S')
+		wstring_handler(data, arg);
 	else if (data->modifier == 'c')
 		print_c(data, arg);
 	else if (data->modifier == 'C')

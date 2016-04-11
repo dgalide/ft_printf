@@ -56,6 +56,7 @@ typedef struct 	s_data
 void			add_precision(t_data *data, char **str);
 void			decimal_handler(t_data *data, va_list arg);
 void			wchar_handler(t_data *data, va_list arg);
+void			wstring_handler(t_data *data, va_list arg);
 void			unsigned_decimal_handler(t_data *data, va_list arg);
 void	octal_handler(t_data *data, va_list arg);
 void		hexadecimal_handler(t_data *data, va_list arg);

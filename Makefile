@@ -23,6 +23,7 @@ SRC =	main.c 			\
 		handlers/percent_handler.c \
 		handlers/hexadecimal_handler.c \
 		handlers/wchar_handler.c \
+		handlers/wstring_handler.c \
 		handlers/octal_handler.c \
 		bin_to_dec.c 	\
 		lib_src/erase_char.c  	\
