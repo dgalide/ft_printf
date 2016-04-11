@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+#include <stdio.h>
 
 int			main(void)
 {
-	ft_printf("%lld", -9223372036854775808);
+	ft_printf("%hU\n", 4294967296);
+	printf("%hU\n", 4294967296);
 	return (0);
 }

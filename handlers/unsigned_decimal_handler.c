@@ -17,7 +17,9 @@ static char *cast_handler(t_data *data, unsigned long long n)
 	char *str;
 
 	str = NULL;
-	if (data->specifier->h)
+	if (data->modifier == 'U')
+		str = ft_unsigned_itoa((unsigned long int)n, 10);
+	else if (data->specifier->h)
 		str = ft_unsigned_itoa((unsigned short int)n, 10);
 	else if (data->specifier->hh)
 		str = ft_unsigned_itoa((unsigned char)n, 10);
