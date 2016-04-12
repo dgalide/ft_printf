@@ -15,7 +15,7 @@
 
 int			main(void)
 {
-	ft_printf("%hU\n", 4294967296);
-	printf("%hU\n", 4294967296);
+	ft_printf("-->%10c<--\n", 0);
+	printf("-->%10c<--\n", 0);
 	return (0);
 }

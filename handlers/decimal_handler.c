@@ -24,7 +24,7 @@ static char 	*decimal_cast_handler(t_data *data, intmax_t decimal_nb)
 	else if (data->specifier->l)
 		str = ft_itoa((long int)decimal_nb, 10);
 	else if (data->specifier->ll)
-		str = ft_itoa((long long int)decimal_nb, 10);
+		str = ft_itoa(( long long int)decimal_nb, 10);
 	else if (data->specifier->j)
 		str = ft_itoa((intmax_t)decimal_nb, 10);
 	else if (data->specifier->z)
@@ -60,6 +60,7 @@ static void		decimal_precision_handler(t_data *data, char **arg)
 		ft_memdel((void **)arg);
 	else if (data->precision > len_arg || (*arg[0] == '-' && data->precision >= len_arg))
 	{
+		data->flag->space = 0;
 		if (*arg[0] == '-')
 			tmp = ft_strnew((data->precision - len_arg) + 1);
 		else
@@ -88,6 +89,7 @@ static void		decimal_range_handler(t_data *data, char **arg)
 	len_arg = (int)ft_strlen(*arg);
 	if (data->minimal_range > len_arg)
 	{
+		data->flag->space = 0;
 		tmp = ft_strnew(data->minimal_range - len_arg);
 		if (data->flag->zero == 1 && data->precision == 0 && data->flag->minus == 0)
 		{
@@ -115,6 +117,20 @@ static void		decimal_range_handler(t_data *data, char **arg)
 	}
 }
 
+static void	space_handler(t_data *data, char **arg)
+{
+	char *str;
+
+	str = NULL;
+	if (data->flag->plus || data->flag->minus || ((*arg) && (*arg)[0] == '-'))
+		data->flag->space = 0;
+	if (data->flag->space)
+	{
+		str = ft_memset(ft_strnew(1), ' ', 1);
+		(*arg) = ft_strjoin_free(&str, arg, 1, 1);
+	}
+}
+
 void		decimal_handler(t_data *data, va_list arg)
 {
 	intmax_t i;
@@ -124,5 +140,6 @@ void		decimal_handler(t_data *data, va_list arg)
 	str = decimal_cast_handler(data, i);
 	decimal_precision_handler(data, &str);
 	decimal_range_handler(data, &str);
+	space_handler(data, &str);
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }
