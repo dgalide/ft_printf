@@ -15,7 +15,6 @@
 
 int			main(void)
 {
-	ft_printf("-->%10c<--\n", 0);
-	printf("-->%10c<--\n", 0);
+	ft_printf("%lld", -9223372036854775808);
 	return (0);
 }

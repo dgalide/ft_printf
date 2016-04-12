@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static char 	*decimal_cast_handler(t_data *data, intmax_t decimal_nb)
+static char 	*decimal_cast_handler(t_data *data, void *decimal_nb)
 {
 	char *str;
 
@@ -22,9 +22,9 @@ static char 	*decimal_cast_handler(t_data *data, intmax_t decimal_nb)
 	else if (data->specifier->hh)
 		str = ft_itoa((signed char)decimal_nb, 10);
 	else if (data->specifier->l)
-		str = ft_itoa((long int)decimal_nb, 10);
+		str = ft_itoa((long)decimal_nb, 10);
 	else if (data->specifier->ll)
-		str = ft_itoa(( long long int)decimal_nb, 10);
+		str = ft_itoa((long long)decimal_nb, 10);
 	else if (data->specifier->j)
 		str = ft_itoa((intmax_t)decimal_nb, 10);
 	else if (data->specifier->z)
@@ -133,10 +133,10 @@ static void	space_handler(t_data *data, char **arg)
 
 void		decimal_handler(t_data *data, va_list arg)
 {
-	intmax_t i;
+	void *i;
 	char *str;
 
-	i = (intmax_t)va_arg(arg, void *);
+	i = va_arg(arg, void *);
 	str = decimal_cast_handler(data, i);
 	decimal_precision_handler(data, &str);
 	decimal_range_handler(data, &str);
