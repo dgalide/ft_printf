@@ -50,7 +50,7 @@ char		*ft_strjoin_free(char **s1, char **s2, int bool_s1, int bool_s2)
 		str[i] = (*s1)[i];
 		i++;
 	}
-	if (bool_s1 && (*s1))
+	if ((*s1) && bool_s1)
 		ft_memdel((void **)s1);
 	while ((*s2) && (*s2)[j])
 	{
@@ -58,7 +58,7 @@ char		*ft_strjoin_free(char **s1, char **s2, int bool_s1, int bool_s2)
 		j++;
 		i++;
 	}
-	if (bool_s2 && (*s2))
+	if ((*s2) && bool_s2)
 		ft_memdel((void **)s2);
 	return (str);
 }

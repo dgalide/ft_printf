@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void			cut_precision(t_data *data, char **str)
+static void		cut_precision(t_data *data, char **str)
 {
 	*str = ft_strsub(*str, 0, data->precision);
 }
@@ -25,7 +25,7 @@ static void null_handler(t_data *data)
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }
 
-void			print_s(t_data *data, va_list arg)
+void			string_handler(t_data *data, va_list arg)
 {
 	char		*str;
 
@@ -37,7 +37,7 @@ void			print_s(t_data *data, va_list arg)
 		if (data->precision < (int)ft_strlen((char *)str) && data->precision != 0)
 			cut_precision(data, &str);
 		if (data->minimal_range > (int)ft_strlen((char *)str))
-			add_len(data, &str);
-		data->final_string = ft_strjoin_free(&data->final_string, &str, 0, 0);
+			generic_range_handler(data, &str);
+		data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 0);
 	}
 }

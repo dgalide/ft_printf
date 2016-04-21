@@ -12,15 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-void		print_ptr(t_data *data, va_list arg)
+void		pointer_handler(t_data *data, va_list arg)
 {
     char	*str;
 
     str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
 	if (data->minimal_range > (int)ft_strlen(str))
-		add_len(data, &str);
-	if (data->final_string)
-		data->final_string = ft_strjoin(data->final_string, str);
-	else
-		data->final_string = ft_strdup(str);
+		generic_range_handler(data, &str);
+	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }

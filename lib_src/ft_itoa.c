@@ -43,20 +43,16 @@ char				*ft_itoa(intmax_t n, int base)
 		return (NULL);
 	if (base == 10 && n < 0)
 	{
-		printf("negativ : %lld\n", n);
 		str[0] = '-';
 		n *= -1;
-		printf("positiv : %lld\n", n);
 	}
 	str[len] = '\0';
 	if (n == 0)
 		str[0] = '0';
 	else
 	{
-		printf("before -->%lld\n", n);
 		while (n != 0)
 		{
-			printf("while -->%lld\n", (n % base));
 			if (base > 10 && n % base > 9)
 				str[--len] = (n % base) + ('a' - 10);
 			else

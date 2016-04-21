@@ -24,13 +24,13 @@ void				process(t_data *data, va_list arg)
 	else if (data->modifier == 'o' || data->modifier == 'O')
 		octal_handler(data, arg);
 	else if (data->modifier == 'p')
-		print_ptr(data, arg);
+		pointer_handler(data, arg);
 	else if (data->modifier == 's')
-		print_s(data, arg);
+		string_handler(data, arg);
 	else if (data->modifier == 'S')
 		wstring_handler(data, arg);
 	else if (data->modifier == 'c')
-		print_c(data, arg);
+		char_handler(data, arg);
 	else if (data->modifier == 'C')
 		wchar_handler(data, arg);
 	else if (data->modifier == '%')
@@ -49,25 +49,6 @@ void				get_side(t_data *data, int j, int i)
 		else
 			data->final_string = ft_strsub(data->form, j, i - j);
 	}
-}
-
-void			handler_percent(t_data *data)
-{
-	char *str;
-
-	str = ft_strnew(1);
-	str[0] = '%';
-	if (data->precision > (int)ft_strlen(str))
-		add_precision(data, &str);
-	if (data->minimal_range > (int)ft_strlen(str))
-	{
-		data->flag->space = 0;
-		add_len(data, &str);
-	}
-	if (data->final_string)
-		data->final_string = ft_strjoin(data->final_string, str);
-	else
-		data->final_string = ft_strdup(str);
 }
 
 int				ft_printf(const char *format, ...)
@@ -102,10 +83,3 @@ int				ft_printf(const char *format, ...)
 	va_end(arg);
 	return (ft_strlen(data->final_string) + data->final_len);
 }
-/*
-int				main(void)
-{
-	printf("ret = %d\n\n", ft_printf("%C\n", L'∆'));
-//	printf("ret = %d\n\n", printf("hello les %S\n", L"δδδδ"));
-	return (0);
-}*/

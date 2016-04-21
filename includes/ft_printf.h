@@ -44,8 +44,6 @@ typedef struct 	s_data
 	int			precision_NULL;
 	char		*setting;
 	char		*form;
-	int			len_wchar;
-	int			mask;
 	int			len_setting;
 	int			minimal_range;
 	char		*final_string;
@@ -53,37 +51,28 @@ typedef struct 	s_data
 	int			nb_arg;
 }				t_data;
 
-void			add_precision(t_data *data, char **str);
+void			pointer_handler(t_data *data, va_list arg);
+void			percent_handler(t_data *data);
 void			decimal_handler(t_data *data, va_list arg);
+void			char_handler(t_data *data, va_list arg);
+void			generic_range_handler(t_data *data, char **s1);
+void			string_handler(t_data *data, va_list arg);
 void			wchar_handler(t_data *data, va_list arg);
 void			wstring_handler(t_data *data, va_list arg);
 void			unsigned_decimal_handler(t_data *data, va_list arg);
-void	octal_handler(t_data *data, va_list arg);
-void		hexadecimal_handler(t_data *data, va_list arg);
-int				ft_isdigit(int c);
-void			process(t_data *data, va_list arg);
-void			percent_handler(t_data *data);
-int				ft_putwchar(wchar_t chr);
-void			print_hexa(t_data *data, va_list arg);
-void 			add_zero(char **str, t_data *data);
-void			print_wchar(t_data *data, va_list arg);
-void			print_c(t_data *data, va_list arg);
-void			print_s(t_data *data, va_list arg);
-int				bin_to_dec(char *bin);
-void			print_wchar(t_data *data, va_list arg);
-void			print_ptr(t_data *data, va_list arg);
-void			print_octal(t_data *data, va_list arg);
-void			add_len(t_data *data, char **str);
-void			add_space(char **str);
-void			add_plus(char **str, t_data *data);
-void			set_zero_data(t_data *data);
-int				ft_printf(const char *format, ...);
-int				ft_is_flag(char c);
-int				search(t_data *data, int i);
-void			print_d(t_data *data, va_list arg);
-int				get_precision_len(t_data *data);
-t_data			*load_struct(const char *format);
+void			octal_handler(t_data *data, va_list arg);
+void			hexadecimal_handler(t_data *data, va_list arg);
+
 int				check_setting(char *format, int i);
+int				search(t_data *data, int i);
+int				get_precision_len(t_data *data);
+int				ft_is_flag(char c);
+
+t_data			*load_struct(const char *format);
+void			set_zero_data(t_data *data);
+
+int				ft_printf(const char *format, ...);
+void			process(t_data *data, va_list arg);
 
 #endif
 

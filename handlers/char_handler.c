@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_to_dec.c                                       :+:      :+:    :+:   */
+/*   print_c.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/03 13:40:47 by dgalide           #+#    #+#             */
-/*   Updated: 2016/03/03 13:40:59 by dgalide          ###   ########.fr       */
+/*   Created: 2016/02/10 20:48:28 by dgalide           #+#    #+#             */
+/*   Updated: 2016/03/05 01:27:47 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "../includes/ft_printf.h"
 
-int			bin_to_dec(char *bin)
+void		char_handler(t_data *data, va_list arg)
 {
-	int		i;
-	int		j;
-	int		k;
+	char	*str;
 
-	printf("bin = %s\n", bin);
-	i = ft_strlen(bin) - 1;
-	j = 0;
-	k = i;
-	while (bin[i])
+	str = ft_strnew(1);
+	str[0] = (int)va_arg(arg, void *);
+	if (str[0] == 0)
 	{
-		if (bin[i] == '1')
-		{
-			j += ft_power(2, (k - i));
-		}
-		i--;
+		data->minimal_range -= 1;
+		data->final_len += 1;
 	}
-	return (j);
+	if (data->minimal_range > (int)ft_strlen((char *)str))
+		generic_range_handler(data, &str);
+	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 }

@@ -17,7 +17,7 @@ SRC =	main.c 			\
 		utils.c 		\
 		search.c 		\
 		get.c 			\
-		flag.c 			\
+		func.c 			\
 		handlers/unsigned_decimal_handler.c \
 		handlers/decimal_handler.c \
 		handlers/percent_handler.c \
@@ -25,7 +25,9 @@ SRC =	main.c 			\
 		handlers/wchar_handler.c \
 		handlers/wstring_handler.c \
 		handlers/octal_handler.c \
-		bin_to_dec.c 	\
+		handlers/string_handler.c 	\
+		handlers/char_handler.c \
+		handlers/pointer_handler.c \
 		lib_src/erase_char.c  	\
 		lib_src/ft_itoa.c 		\
 		lib_src/ft_memdel.c 	\
@@ -48,9 +50,6 @@ SRC =	main.c 			\
 		lib_src/ft_isdigit.c 	\
 		lib_src/ft_unsigned_itoa.c \
 		lib_src/ft_memset.c \
-		handlers/print_ptr.c 	\
-		handlers/print_s.c 		\
-		handlers/print_c.c 		\
 
 SRCO = $(SRC:.c=.o)
 
