@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-static size_t		ft_nbrlen(intmax_t n, size_t base)
+static size_t		ft_nbrlen_imax(intmax_t n, size_t base)
 {
 	size_t			i;
 
@@ -32,12 +32,30 @@ static size_t		ft_nbrlen(intmax_t n, size_t base)
 	return (i);
 }
 
+static void			ft_base_imax(size_t len, char **str, size_t base,
+		intmax_t nb)
+{
+	while (nb != 0)
+	{
+		len--;
+		if (base >= 10 && nb % base >= 10)
+		{
+			(*str)[len] = (nb % base) + 87;
+		}
+		else
+		{
+			(*str)[len] = (nb % base) + 48;
+		}
+		nb = nb / base;
+	}
+}
+
 char				*ft_itoa(intmax_t n, int base)
 {
 	char			*str;
 	size_t			len;
 
-	len = ft_nbrlen(n, base);
+	len = ft_nbrlen_imax(n, base);
 	str = ft_strnew(len);
 	if (!str)
 		return (NULL);
@@ -46,16 +64,12 @@ char				*ft_itoa(intmax_t n, int base)
 		str[0] = '-';
 		n = -n;
 	}
+	str[len] = '\0';
 	if (n == 0)
-		str[0] = '0';
+		str[--len] = '0';
 	else
 	{
-		while (n != 0)
-		{
-			str[--len] = (base > 10 && n % base > 9) ?
-				(n % base) + ('a' - 10) : (n % base) + 48;
-			n = n / base;
-		}
+		ft_base_imax(len, &str, base, n);
 	}
 	return (str);
 }
