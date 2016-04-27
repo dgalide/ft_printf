@@ -1,4 +1,4 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -13,9 +13,10 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 
-void				process(t_data *data, va_list arg)
+void			process(t_data *data, va_list arg)
 {
-	if (data->modifier == 'd' || data->modifier == 'i' || data->modifier == 'D')
+	if (data->modifier == 'd' ||
+		data->modifier == 'i' || data->modifier == 'D')
 		decimal_handler(data, arg);
 	if (data->modifier == 'u' || data->modifier == 'U')
 		unsigned_decimal_handler(data, arg);
@@ -37,37 +38,32 @@ void				process(t_data *data, va_list arg)
 		percent_handler(data);
 }
 
-void				get_side(t_data *data, int j, int i)
+void			get_side(t_data *data, int j, int i)
 {
-	char		*tmp;
+	char *tmp;
 
-	tmp = data->final_string;
+	tmp = NULL;
 	if (i > j)
 	{
-		if (tmp)
-			data->final_string = ft_strjoin(data->final_string, ft_strsub(data->form, j, i - j));
-		else
-			data->final_string = ft_strsub(data->form, j, i - j);
+		tmp = ft_strsub(data->form, j, i - j);
+		data->final_string = ft_strjoin_free(&(data->final_string),
+			&tmp, 1, 1);
 	}
 }
 
-int				ft_printf(const char *format, ...)
+int				ft_printf_ext(t_data *data, va_list arg, const char *format)
 {
-	t_data		*data;
-	va_list		arg;
-	int			i;
-	int			j;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
-	va_start(arg, format);
-	data = load_struct(format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			if (search(data, i) == -1)
-				return (-1);
+				return (0);
 			get_side(data, j, i);
 			get_precision_len(data);
 			process(data, arg);
@@ -76,9 +72,21 @@ int				ft_printf(const char *format, ...)
 			set_zero_data(data);
 		}
 		else
-			i++;
+			i += 1;
 	}
 	get_side(data, j, i);
+	return (1);
+}
+
+int				ft_printf(const char *format, ...)
+{
+	t_data		*data;
+	va_list		arg;
+
+	va_start(arg, format);
+	data = load_struct(format);
+	if (ft_printf_ext(data, arg, format) == 0)
+		return (0);
 	ft_putstr(data->final_string);
 	va_end(arg);
 	return (ft_strlen(data->final_string) + data->final_len);
