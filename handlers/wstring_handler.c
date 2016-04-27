@@ -16,26 +16,26 @@ static void	wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
 {
 	while ((*tmp) && (*tmp)[++i])
 	{
-		*s1 = ft_memset(ft_strnew(4), '\0', 4);
+		*s1 = ft_memset(ft_strnew(5), '\0', 5);
 		if ((*tmp)[i] <= 0x7F)
-			*s1[0] = (*tmp)[i];
+			(*s1)[0] = (*tmp)[i];
 		else if ((*tmp)[i] <= 0x7FF)
 		{
-			*s1[0] = (((*tmp)[i] >> 6) + 0xC0);
-			*s1[1] = (((*tmp)[i] & 0x3F) + 0x80);
+			(*s1)[0] = (((*tmp)[i] >> 6) + 0xC0);
+			(*s1)[1] = (((*tmp)[i] & 0x3F) + 0x80);
 		}
 		else if ((*tmp)[i] <= 0xFFFF)
 		{
-			*s1[0] = (((*tmp)[i] >> 12) + 0xE0);
-			*s1[1] = ((((*tmp)[i] >> 6) & 0x3F) + 0x80);
-			*s1[2] = (((*tmp)[i] & 0x3F) + 0x80);
+			(*s1)[0] = (((*tmp)[i] >> 12) + 0xE0);
+			(*s1)[1] = ((((*tmp)[i] >> 6) & 0x3F) + 0x80);
+			(*s1)[2] = (((*tmp)[i] & 0x3F) + 0x80);
 		}
 		else if ((*tmp)[i] <= 0x10FFFF)
 		{
-			*s1[0] = (((*tmp)[i] >> 18) + 0xF0);
-			*s1[1] = ((((*tmp)[i] >> 12) & 0x3F) + 0x80);
-			*s1[2] = ((((*tmp)[i] >> 6) & 0x3F) + 0x80);
-			*s1[3] = (((*tmp)[i] & 0x3F) + 0x80);
+			(*s1)[0] = (((*tmp)[i] >> 18) + 0xF0);
+			(*s1)[1] = ((((*tmp)[i] >> 12) & 0x3F) + 0x80);
+			(*s1)[2] = ((((*tmp)[i] >> 6) & 0x3F) + 0x80);
+			(*s1)[3] = (((*tmp)[i] & 0x3F) + 0x80);
 		}
 		*s2 = ft_strjoin_free(s2, s1, 1, 1);
 	}
