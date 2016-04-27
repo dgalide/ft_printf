@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static char 	*decimal_cast_handler(t_data *data, void *decimal_nb)
+static char			*decimal_cast_handler(t_data *data, void *decimal_nb)
 {
 	char *str;
 
@@ -34,56 +34,38 @@ static char 	*decimal_cast_handler(t_data *data, void *decimal_nb)
 	return (str);
 }
 
-void		add_plus(char **str, t_data *data)
+static void			decimal_precision_handler(t_data *data, char **arg)
 {
-	char *tmp;
-
-	tmp = NULL;
-	if (*str[0] && *str[0] != '-' && data->flag->plus)
-	{
-		tmp = ft_strnew(1);
-		tmp = ft_memset(tmp, '+', 1);
-		*str = ft_strjoin_free(&tmp, str, 1, 1);
-	}
-}
-
-static void		decimal_precision_handler(t_data *data, char **arg)
-{
-	int i;
-	int len_arg;
-	char *tmp;
+	int		i;
+	int		len_arg;
+	char	*tmp;
 
 	len_arg = (int)ft_strlen(*arg);
 	i = 0;
 	tmp = NULL;
-	if (data->precision_NULL == 1 && *arg[0] == '0')
+	if (data->precision_null == 1 && *arg[0] == '0')
 		ft_memdel((void **)arg);
-	else if (data->precision > len_arg || (*arg[0] == '-' && data->precision >= len_arg))
+	else if (data->precision > len_arg || (*arg[0] == '-' &&
+		data->precision >= len_arg))
 	{
 		data->flag->space = 0;
-		if (*arg[0] == '-')
-			tmp = ft_strnew((data->precision - len_arg) + 1);
-		else
-			tmp = ft_strnew((data->precision - len_arg));
-		if (*arg[0] == '-')
-			tmp = ft_memset(tmp, '0', (data->precision - len_arg) + 1);
-		else
-			tmp = ft_memset(tmp, '0', (data->precision - len_arg));
+		tmp = ft_memset(ft_strnew((data->precision - len_arg) + 1),
+			'0', (data->precision - len_arg) + 1);
 		if (*arg[0] == '-')
 		{
 			*arg[0] = '0';
 			tmp[0] = '-';
 		}
+		else
+			tmp[data->precision - len_arg] = '\0';
 		*arg = ft_strjoin_free(&tmp, arg, 1, 1);
 	}
-	if (data->flag->plus == 1)
-		add_plus(arg, data);
 }
 
-static void		decimal_range_handler(t_data *data, char **arg)
+static void			decimal_range_handler(t_data *data, char **arg)
 {
-	int  len_arg;
-	char *tmp;
+	int		len_arg;
+	char	*tmp;
 
 	tmp = NULL;
 	len_arg = (int)ft_strlen(*arg);
@@ -91,19 +73,11 @@ static void		decimal_range_handler(t_data *data, char **arg)
 	{
 		data->flag->space = 0;
 		tmp = ft_strnew(data->minimal_range - len_arg);
-		if (data->flag->zero == 1 && data->precision == 0 && data->flag->minus == 0)
+		if (data->flag->zero == 1 && data->precision == 0 &&
+			data->flag->minus == 0)
 		{
 			tmp = ft_memset(tmp, '0', (data->minimal_range - len_arg));
-			if (*arg[0] == '+')
-			{
-				*arg[0] = '0';
-				tmp[0] = '+';
-			}
-			else if (*arg[0] == '-')
-			{
-				*arg[0] = '0';
-				tmp[0] = '-';
-			}
+			sign_replace(arg, &tmp);
 			*arg = ft_strjoin_free(&tmp, arg, 1, 1);
 		}
 		else
@@ -117,7 +91,7 @@ static void		decimal_range_handler(t_data *data, char **arg)
 	}
 }
 
-static void	space_handler(t_data *data, char **arg)
+static void			space_handler(t_data *data, char **arg)
 {
 	char *str;
 
@@ -131,7 +105,7 @@ static void	space_handler(t_data *data, char **arg)
 	}
 }
 
-void		decimal_handler(t_data *data, va_list arg)
+void				decimal_handler(t_data *data, va_list arg)
 {
 	void *i;
 	char *str;
@@ -139,6 +113,8 @@ void		decimal_handler(t_data *data, va_list arg)
 	i = va_arg(arg, void *);
 	str = decimal_cast_handler(data, i);
 	decimal_precision_handler(data, &str);
+	if (data->flag->plus == 1)
+		add_plus(&str, data);
 	decimal_range_handler(data, &str);
 	space_handler(data, &str);
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);

@@ -12,22 +12,27 @@
 
 #include "includes/ft_printf.h"
 
-void			get_rest(t_data *data, const char *format, int start, int i)
+static int				get_precision(t_data *data, int *i)
 {
-	char		*tmp;
+	int j;
 
-	if (i > 0 && i > start)
+	*i += 1;
+	j = *i;
+	if (data->setting[*i] == '0' || ft_isdigit(data->setting[*i]) == 0)
 	{
-		tmp = ft_strsub(format, start, i);
-		if (data->final_string)
-			data->final_string = ft_strjoin(data->final_string, tmp);
-		else
-			data->final_string = ft_strdup(tmp);
+		data->precision_null = 1;
+		return (0);
 	}
-
+	else
+	{
+		while (data->setting[*i] >= '0' && data->setting[*i] <= '9')
+			(*i)++;
+		(*i) -= 1;
+		return (ft_atoi(ft_strsub(data->setting, j, (*i - j) + 1)));
+	}
 }
 
-int				get_precision_len(t_data *data)
+int						get_precision_len(t_data *data)
 {
 	char		*tmp;
 	int			i;
@@ -39,21 +44,14 @@ int				get_precision_len(t_data *data)
 	while (data->setting[i])
 	{
 		if (data->setting[i] == '.')
-		{
-			i++;
-			j = i;
-			if (data->setting[i] == '0' || ft_isdigit(data->setting[i]) == 0)
-				data->precision_NULL = 1;
-			while (data->setting[i] >= '0' && data->setting[i] <= '9')
-				i++;
-			data->precision = ft_atoi(ft_strsub(tmp, j, i - j));
-		}
+			data->precision = get_precision(data, &i);
 		else if ((data->setting[i] >= '0' && data->setting[i] <= '9'))
 		{
 			j = i;
 			while (data->setting[i] >= '0' && data->setting[i] <= '9')
 				i++;
-			data->minimal_range = ft_atoi(ft_strsub(data->setting, j, (i - j)));
+			data->minimal_range = ft_atoi(
+				ft_strsub(data->setting, j, (i - j)));
 			i--;
 		}
 		i++;

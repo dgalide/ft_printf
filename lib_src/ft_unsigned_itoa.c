@@ -12,9 +12,9 @@
 
 #include "../includes/libft.h"
 
-static unsigned long long	ft_strleni(unsigned long long n, int base)
+static size_t		ft_nbrlen(unsigned long long n, int base)
 {
-	unsigned long long	i;
+	size_t i;
 
 	i = 0;
 	if (n == 0)
@@ -27,32 +27,22 @@ static unsigned long long	ft_strleni(unsigned long long n, int base)
 	return (i);
 }
 
-char			*ft_unsigned_itoa(unsigned long long nb, int base)
+char				*ft_unsigned_itoa(unsigned long long n, int base)
 {
-	char			*str;
-	unsigned long long len;
-	unsigned long long a;
+	char				*str;
+	size_t				len;
 
-	a = 0;
-	len = ft_strleni(nb, base) - 1;
+	len = ft_nbrlen(n, base) - 1;
 	str = ft_strnew(len + 1);
 	if (!str)
 		return (NULL);
-	if (nb == 0)
+	if (n == 0)
 		str[len] = '0';
-	while (nb)
+	while (n)
 	{
-		if (base > 9)
-		{
-			a = nb % base;
-			str[len] = ((a > 9) ? (a - 10) + 'a' : a + '0');
-			nb = nb / base;
-		}
-		else
-		{
-			str[len] = nb % base + '0';
-			nb = nb / base;
-		}
+		str[len] = (base > 10 && n % base > 9) ?
+			(n % base) + ('a' - 10) : (n % base) + 48;
+		n /= base;
 		len--;
 	}
 	return (str);

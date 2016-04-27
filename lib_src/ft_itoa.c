@@ -44,19 +44,16 @@ char				*ft_itoa(intmax_t n, int base)
 	if (base == 10 && n < 0)
 	{
 		str[0] = '-';
-		n *= -1;
+		n = -n;
 	}
-	str[len] = '\0';
 	if (n == 0)
 		str[0] = '0';
 	else
 	{
 		while (n != 0)
 		{
-			if (base > 10 && n % base > 9)
-				str[--len] = (n % base) + ('a' - 10);
-			else
-				str[--len] = (n % base) + 48;
+			str[--len] = (base > 10 && n % base > 9) ?
+				(n % base) + ('a' - 10) : (n % base) + 48;
 			n = n / base;
 		}
 	}

@@ -14,9 +14,9 @@
 
 void		pointer_handler(t_data *data, va_list arg)
 {
-    char	*str;
+	char	*str;
 
-    str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
+	str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
 	if (data->minimal_range > (int)ft_strlen(str))
 		generic_range_handler(data, &str);
 	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);

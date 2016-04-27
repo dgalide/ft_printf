@@ -12,10 +12,10 @@
 
 #include "includes/ft_printf.h"
 
-void		generic_range_handler(t_data *data, char **s1)
+void			generic_range_handler(t_data *data, char **s1)
 {
-	char *tmp;
-	int n;
+	char	*tmp;
+	int		n;
 
 	n = data->minimal_range - ft_strlen((*s1));
 	tmp = ft_memset(ft_strnew(n), ' ', n);

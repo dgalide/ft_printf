@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static char *cast_handler(t_data *data, intmax_t n)
+static char		*cast_handler(t_data *data, intmax_t n)
 {
 	char *str;
 
@@ -36,7 +36,7 @@ static char *cast_handler(t_data *data, intmax_t n)
 
 static void		upper_case_handler(char **arg)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	while ((*arg) && (*arg)[i])
@@ -47,36 +47,10 @@ static void		upper_case_handler(char **arg)
 	}
 }
 
-static void		add_diez(char **arg, int zero_bool)
+static void		range_hexadecimal_handler(t_data *data, char **arg)
 {
-	char	*str;
-
-	str = NULL;
-	if (*arg && !zero_bool)
-	{
-		str = ft_memset(ft_strnew(2), 'x', 2);
-		str[0] = '0';
-		*arg = ft_strjoin_free(&str, arg, 1, 1);
-	}
-}
-
-static void		replace_diez(char **arg)
-{
-	int i;
-
-	i = 1;
-	(*arg)[i] = 'x';
-	while ((*arg) && (*arg)[++i])
-	{
-		if ((*arg)[i] == 'x')
-			(*arg)[i] = '0';
-	}
-}
-
-static void	range_hexadecimal_handler(t_data *data, char **arg)
-{
-	char *tmp;
-	int n;
+	char	*tmp;
+	int		n;
 
 	tmp = NULL;
 	n = data->minimal_range - (int)ft_strlen((*arg));
@@ -96,14 +70,14 @@ static void	range_hexadecimal_handler(t_data *data, char **arg)
 	}
 }
 
-static void precision_hexadecimal_handler(t_data *data, char **arg, int zero_bool)
+static void		precision_handler(t_data *data, char **arg, int bool_z)
 {
-	char *str;
-	int n;
+	char	*str;
+	int		n;
 
 	str = NULL;
 	n = data->precision - (int)ft_strlen((*arg));
-	if (zero_bool && data->precision_NULL)
+	if (bool_z && data->precision_null)
 		ft_memdel((void **)arg);
 	else if (n > 0)
 	{
@@ -112,16 +86,16 @@ static void precision_hexadecimal_handler(t_data *data, char **arg, int zero_boo
 	}
 }
 
-void		hexadecimal_handler(t_data *data, va_list arg)
+void			hexadecimal_handler(t_data *data, va_list arg)
 {
-	uintmax_t n;
-	int zero_bool;
-	char *str;
+	uintmax_t	n;
+	int			zero_bool;
+	char		*str;
 
 	n = (uintmax_t)va_arg(arg, void *);
 	str = cast_handler(data, n);
 	zero_bool = (((str)[0] == '0') ? 1 : 0);
-	precision_hexadecimal_handler(data, &str, zero_bool);
+	precision_handler(data, &str, zero_bool);
 	if (data->flag->diez)
 		add_diez(&str, zero_bool);
 	range_hexadecimal_handler(data, &str);

@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <stdarg.h>
 
-typedef struct 	s_flag
+typedef struct	s_flag
 {
 	int			diez;
 	int			zero;
@@ -25,7 +25,7 @@ typedef struct 	s_flag
 	int			space;
 }				t_flag;
 
-typedef struct  s_spec
+typedef	struct	s_spec
 {
 	int			ll;
 	int			l;
@@ -35,13 +35,13 @@ typedef struct  s_spec
 	int			z;
 }				t_spec;
 
-typedef struct 	s_data
+typedef	struct	s_data
 {
 	t_flag		*flag;
 	t_spec		*specifier;
 	char		modifier;
 	int			precision;
-	int			precision_NULL;
+	int			precision_null;
 	char		*setting;
 	char		*form;
 	int			len_setting;
@@ -70,10 +70,12 @@ int				ft_is_flag(char c);
 
 t_data			*load_struct(const char *format);
 void			set_zero_data(t_data *data);
+void			add_plus(char **str, t_data *data);
+void			sign_replace(char **s1, char **s2);
+void			add_diez(char **arg, int zero_bool);
+void			replace_diez(char **arg);
 
 int				ft_printf(const char *format, ...);
 void			process(t_data *data, va_list arg);
 
 #endif
-
-

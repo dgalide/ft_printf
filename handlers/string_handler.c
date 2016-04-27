@@ -17,7 +17,7 @@ static void		cut_precision(t_data *data, char **str)
 	*str = ft_strsub(*str, 0, data->precision);
 }
 
-static void null_handler(t_data *data)
+static void		null_handler(t_data *data)
 {
 	char *str;
 
@@ -34,7 +34,8 @@ void			string_handler(t_data *data, va_list arg)
 		null_handler(data);
 	else
 	{
-		if (data->precision < (int)ft_strlen((char *)str) && data->precision != 0)
+		if (data->precision < (int)ft_strlen((char *)str) &&
+			data->precision != 0)
 			cut_precision(data, &str);
 		if (data->minimal_range > (int)ft_strlen((char *)str))
 			generic_range_handler(data, &str);

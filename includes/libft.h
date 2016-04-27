@@ -59,7 +59,7 @@ int					ft_lenwords(const char *s, char c, int word);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int 				ft_atoi_base(char *str, int base);
+int					ft_atoi_base(char *str, int base);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -76,7 +76,8 @@ int					check_line(char *str, int c);
 
 char				*ft_itoa(intmax_t nb, int base);
 char				*ft_unsigned_itoa(unsigned long long nb, int base);
-char				*ft_strjoin_free(char **s1, char **s2, int bool_s1, int bool_s2);
+char				*ft_strjoin_free(char **s1, char **s2,
+										int bool1, int bool2);
 char				*ft_strmap(const char *s, char (*f)(char));
 char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char				*ft_strcat(char *s1, const char *s2);

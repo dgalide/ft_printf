@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static char *cast_handler(t_data *data, unsigned long long n)
+static char	*cast_handler(t_data *data, unsigned long long n)
 {
 	char *str;
 
@@ -36,14 +36,14 @@ static char *cast_handler(t_data *data, unsigned long long n)
 	return (str);
 }
 
-static void unsigned_precision_handler(t_data *data, char **arg)
+static void	unsigned_precision_handler(t_data *data, char **arg)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
 	i = data->precision - (int)ft_strlen(*arg);
 	tmp = NULL;
-	if (data->precision_NULL && *arg[0] == '0')
+	if (data->precision_null && *arg[0] == '0')
 		ft_memdel((void **)arg);
 	if (data->precision > (int)ft_strlen(*arg))
 	{
@@ -52,10 +52,10 @@ static void unsigned_precision_handler(t_data *data, char **arg)
 	}
 }
 
-static void unsigned_range_handler(t_data *data, char **arg)
+static void	unsigned_range_handler(t_data *data, char **arg)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
 	i = data->minimal_range - (int)ft_strlen(*arg);
 	tmp = NULL;
@@ -75,10 +75,10 @@ static void unsigned_range_handler(t_data *data, char **arg)
 	}
 }
 
-void	unsigned_decimal_handler(t_data *data, va_list arg)
+void		unsigned_decimal_handler(t_data *data, va_list arg)
 {
-	unsigned long long n;
-	char *str;
+	unsigned long long	n;
+	char				*str;
 
 	n = (unsigned long long)va_arg(arg, void *);
 	str = cast_handler(data, n);

@@ -26,7 +26,7 @@ static int				specifier_search(char *str, t_data *data, int start)
 			str[start] == 'u' || str[start] == 'O' || \
 			str[start] == 'U' || str[start] == 'x' || \
 			str[start] == 'X' || str[start] == 'C' || \
-			str[start] == '%' )
+			str[start] == '%')
 		{
 			data->modifier = str[start];
 			data->setting = ft_strsub(str, begin, (start - begin) + 1);
@@ -40,35 +40,27 @@ static int				specifier_search(char *str, t_data *data, int start)
 static int				modifier_search(t_data *data)
 {
 	int			i;
-	int			j;
 
 	i = (ft_strlen(data->setting) - 2);
-	j = 0;
 	if (data->setting[i] == 'h' && data->setting[i - 1] == 'h')
-	{
 		data->specifier->hh = 1;
-		j = 1;
-	}
 	else if (data->setting[i] == 'h')
 		data->specifier->h = 1;
 	else if (data->setting[i] == 'l' && data->setting[i - 1] == 'l')
-	{
 		data->specifier->ll = 1;
-		j = 1;
-	}
 	else if (data->setting[i] == 'l')
 		data->specifier->l = 1;
 	else if (data->setting[i] == 'j')
 		data->specifier->j = 1;
 	else if (data->setting[i] == 'z')
 		data->specifier->z = 1;
-	if (j)
+	if (data->specifier->hh || data->specifier->ll)
 		return ((check_setting(data->setting, i - 1) == 1) ? 1 : 0);
 	else
 		return ((check_setting(data->setting, i) == 1) ? 1 : 0);
 }
 
-static void		flag_search(t_data *data)
+static void				flag_search(t_data *data)
 {
 	int			i;
 
@@ -89,7 +81,7 @@ static void		flag_search(t_data *data)
 	}
 }
 
-int				search(t_data *data, int i)
+int						search(t_data *data, int i)
 {
 	if (specifier_search(data->form, data, i) == -1)
 		return (-1);

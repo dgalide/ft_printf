@@ -14,10 +14,10 @@
 
 void				erase_char(char **str, char c, int start)
 {
-	char *tmp;
-	char *tmp2;
-	int i;
-	int	k;
+	char	*tmp;
+	char	*tmp2;
+	int		i;
+	int		k;
 
 	i = 0;
 	k = 0;
