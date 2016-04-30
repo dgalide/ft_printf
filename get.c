@@ -56,5 +56,6 @@ int						get_precision_len(t_data *data)
 		}
 		i++;
 	}
+	ft_memdel((void **)&tmp);
 	return (0);
 }

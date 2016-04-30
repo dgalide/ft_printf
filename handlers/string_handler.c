@@ -14,7 +14,11 @@
 
 static void		cut_precision(t_data *data, char **str)
 {
+	char *tmp;
+
+	tmp = (*str);
 	*str = ft_strsub(*str, 0, data->precision);
+	ft_memdel((void **)&tmp);
 }
 
 static void		null_handler(t_data *data)
@@ -29,7 +33,7 @@ void			string_handler(t_data *data, va_list arg)
 {
 	char		*str;
 
-	str = va_arg(arg, void *);
+	str = ft_strdup(va_arg(arg, void *));
 	if (!str || str == NULL)
 		null_handler(data);
 	else
@@ -39,6 +43,6 @@ void			string_handler(t_data *data, va_list arg)
 			cut_precision(data, &str);
 		if (data->minimal_range > (int)ft_strlen((char *)str))
 			generic_range_handler(data, &str);
-		data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 0);
+		data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
 	}
 }

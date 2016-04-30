@@ -43,7 +43,6 @@ typedef	struct	s_data
 	int			precision;
 	int			precision_null;
 	char		*setting;
-	char		*form;
 	int			len_setting;
 	int			minimal_range;
 	char		*final_string;
@@ -64,16 +63,17 @@ void			octal_handler(t_data *data, va_list arg);
 void			hexadecimal_handler(t_data *data, va_list arg);
 
 int				check_setting(char *format, int i);
-int				search(t_data *data, int i);
+int				search(t_data *data, int i, char *format);
 int				get_precision_len(t_data *data);
 int				ft_is_flag(char c);
 
-t_data			*load_struct(const char *format);
+t_data			*load_struct(void);
 void			set_zero_data(t_data *data);
 void			add_plus(char **str, t_data *data);
 void			sign_replace(char **s1, char **s2);
 void			add_diez(char **arg, int zero_bool);
 void			replace_diez(char **arg);
+void			struct_del(t_data *data);
 
 int				ft_printf(const char *format, ...);
 void			process(t_data *data, va_list arg);

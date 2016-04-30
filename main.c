@@ -38,14 +38,14 @@ void			process(t_data *data, va_list arg)
 		percent_handler(data);
 }
 
-void			get_side(t_data *data, int j, int i)
+void			get_side(t_data *data, int j, int i, const char *form)
 {
 	char *tmp;
 
 	tmp = NULL;
 	if (i > j)
 	{
-		tmp = ft_strsub(data->form, j, i - j);
+		tmp = ft_strsub(form, j, i - j);
 		data->final_string = ft_strjoin_free(&(data->final_string),
 			&tmp, 1, 1);
 	}
@@ -62,9 +62,9 @@ int				ft_printf_ext(t_data *data, va_list arg, const char *format)
 	{
 		if (format[i] == '%')
 		{
-			if (search(data, i) == -1)
+			if (search(data, i, format) == -1)
 				return (0);
-			get_side(data, j, i);
+			get_side(data, j, i, format);
 			get_precision_len(data);
 			process(data, arg);
 			i += data->len_setting;
@@ -74,7 +74,7 @@ int				ft_printf_ext(t_data *data, va_list arg, const char *format)
 		else
 			i += 1;
 	}
-	get_side(data, j, i);
+	get_side(data, j, i, format);
 	return (1);
 }
 
@@ -82,12 +82,15 @@ int				ft_printf(const char *format, ...)
 {
 	t_data		*data;
 	va_list		arg;
+	int			len;
 
 	va_start(arg, format);
-	data = load_struct(format);
+	data = load_struct();
 	if (ft_printf_ext(data, arg, format) == 0)
 		return (0);
 	ft_putstr(data->final_string);
 	va_end(arg);
-	return (ft_strlen(data->final_string) + data->final_len);
+	len = (ft_strlen(data->final_string) + data->final_len);
+	struct_del(data);
+	return (len);
 }

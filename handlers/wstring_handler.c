@@ -41,6 +41,21 @@ static void	wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
 	}
 }
 
+void		wstring_range_handler(t_data *data, char **str)
+{
+	char	*tmp;
+	int		n;
+
+	tmp = NULL;
+	n = data->minimal_range - (int)ft_strlen((*str));
+	if (n > 0)
+	{
+		tmp = ft_memset(ft_strnew(n), ' ', n);
+		(*str) = (data->flag->minus) ? ft_strjoin_free(str, &tmp, 1, 1) :
+									ft_strjoin_free(&tmp, str, 1, 1);
+	}
+}
+
 void		wstring_handler(t_data *data, va_list arg)
 {
 	wchar_t *wstr;
@@ -51,5 +66,6 @@ void		wstring_handler(t_data *data, va_list arg)
 	s2 = NULL;
 	wstr = (wchar_t *)va_arg(arg, void *);
 	wide_to_char(&wstr, &s1, &s2, -1);
+	wstring_range_handler(data, &s2);
 	data->final_string = ft_strjoin_free(&data->final_string, &s2, 1, 1);
 }

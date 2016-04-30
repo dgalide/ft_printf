@@ -81,9 +81,9 @@ static void				flag_search(t_data *data)
 	}
 }
 
-int						search(t_data *data, int i)
+int						search(t_data *data, int i, char *format)
 {
-	if (specifier_search(data->form, data, i) == -1)
+	if (specifier_search(format, data, i) == -1)
 		return (-1);
 	if (modifier_search(data) == 0)
 		return (-1);

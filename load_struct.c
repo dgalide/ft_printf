@@ -12,6 +12,20 @@
 
 #include "includes/ft_printf.h"
 
+void			struct_del(t_data *data)
+{
+	if (data)
+	{
+		free(data->specifier);
+		free(data->flag);
+		if (data->final_string)
+			ft_memdel(((void **)&data->final_string));
+		if (data->setting)
+			ft_memdel(((void **)&data->setting));
+		free(data);
+	}
+}
+
 void			set_zero_data(t_data *data)
 {
 	if (data)
@@ -31,12 +45,15 @@ void			set_zero_data(t_data *data)
 		data->precision_null = 0;
 		data->modifier = 0;
 		data->len_setting = 0;
-		data->setting = NULL;
+		if (data->setting)
+			ft_memdel((void **)&data->setting);
+		else
+			data->setting = NULL;
 		data->minimal_range = 0;
 	}
 }
 
-t_data			*load_struct(const char *format)
+t_data			*load_struct(void)
 {
 	t_spec		*spec;
 	t_flag		*flag;
@@ -47,9 +64,9 @@ t_data			*load_struct(const char *format)
 	spec = (t_spec *)malloc(sizeof(t_spec));
 	data->specifier = spec;
 	data->flag = flag;
-	set_zero_data(data);
+	data->setting = NULL;
 	data->final_len = 0;
 	data->final_string = NULL;
-	data->form = ft_strdup((char *)format);
+	set_zero_data(data);
 	return (data);
 }
