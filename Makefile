@@ -6,7 +6,7 @@
 #    By: mchevall <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/26 14:43:40 by mchevall          #+#    #+#              #
-#    Updated: 2016/02/09 16:12:11 by dgalide          ###   ########.fr        #
+#    Updated: 2016/05/01 16:01:10 by dgalide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ SRCO = $(SRC:.c=.o)
 
 INC = includes/ft_printf.h
 
-FLAG = -Wall -Werror -Wextra
+FLAG = -g -Wall -Werror -Wextra
 
 all: $(NAME)
 

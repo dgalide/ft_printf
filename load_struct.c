@@ -14,16 +14,11 @@
 
 void			struct_del(t_data *data)
 {
-	if (data)
-	{
-		free(data->specifier);
-		free(data->flag);
-		if (data->final_string)
-			ft_memdel(((void **)&data->final_string));
-		if (data->setting)
-			ft_memdel(((void **)&data->setting));
-		free(data);
-	}
+	free(data->specifier);
+	free(data->flag);
+	ft_memdel(((void **)&data->final_string));
+	ft_memdel(((void **)&data->setting));
+	free(data);
 }
 
 void			set_zero_data(t_data *data)
@@ -55,15 +50,11 @@ void			set_zero_data(t_data *data)
 
 t_data			*load_struct(void)
 {
-	t_spec		*spec;
-	t_flag		*flag;
 	t_data		*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
-	flag = (t_flag *)malloc(sizeof(t_flag));
-	spec = (t_spec *)malloc(sizeof(t_spec));
-	data->specifier = spec;
-	data->flag = flag;
+	data->flag = (t_flag *)malloc(sizeof(t_flag));
+	data->specifier = (t_spec *)malloc(sizeof(t_spec));
 	data->setting = NULL;
 	data->final_len = 0;
 	data->final_string = NULL;

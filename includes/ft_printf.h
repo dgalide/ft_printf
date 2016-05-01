@@ -63,7 +63,7 @@ void			octal_handler(t_data *data, va_list arg);
 void			hexadecimal_handler(t_data *data, va_list arg);
 
 int				check_setting(char *format, int i);
-int				search(t_data *data, int i, char *format);
+int				search(t_data *data, int i, const char *format);
 int				get_precision_len(t_data *data);
 int				ft_is_flag(char c);
 

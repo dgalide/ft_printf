@@ -51,3 +51,31 @@ int				ft_atoi(const char *str)
 	}
 	return (n != 0 ? -r : r);
 }
+
+int				ft_atoi_del(char **str)
+{
+	size_t	i;
+	size_t	r;
+	size_t	n;
+
+	i = 0;
+	r = 0;
+	n = 0;
+	if (!(*str))
+		return (0);
+	while (ft_espace(&(*str)[i]))
+		i++;
+	if ((*str)[i] == '+' || (*str)[i] == '-')
+	{
+		if ((*str)[i] == '-')
+			n++;
+		i++;
+	}
+	while ((*str)[i] >= '0' && (*str)[i] <= '9' && (*str))
+	{
+		r = r * 10 + (*str)[i] - 48;
+		i++;
+	}
+	ft_memdel((void **)str);
+	return (n != 0 ? -r : r);
+}

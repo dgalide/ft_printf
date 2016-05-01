@@ -87,10 +87,14 @@ int				ft_printf(const char *format, ...)
 	va_start(arg, format);
 	data = load_struct();
 	if (ft_printf_ext(data, arg, format) == 0)
+	{
+		struct_del(data);
 		return (0);
+	}
 	ft_putstr(data->final_string);
 	va_end(arg);
 	len = (ft_strlen(data->final_string) + data->final_len);
 	struct_del(data);
+	data = NULL;
 	return (len);
 }

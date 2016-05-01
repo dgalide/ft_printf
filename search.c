@@ -81,12 +81,16 @@ static void				flag_search(t_data *data)
 	}
 }
 
-int						search(t_data *data, int i, char *format)
+int						search(t_data *data, int i, const char *format)
 {
-	if (specifier_search(format, data, i) == -1)
+	char *tmp;
+
+	tmp = (char *)format;
+	if (specifier_search(tmp, data, i) == -1)
 		return (-1);
 	if (modifier_search(data) == 0)
 		return (-1);
 	flag_search(data);
+	tmp = NULL;
 	return (1);
 }

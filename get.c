@@ -14,7 +14,8 @@
 
 static int				get_precision(t_data *data, int *i)
 {
-	int j;
+	int		j;
+	char	*tmp;
 
 	*i += 1;
 	j = *i;
@@ -28,7 +29,8 @@ static int				get_precision(t_data *data, int *i)
 		while (data->setting[*i] >= '0' && data->setting[*i] <= '9')
 			(*i)++;
 		(*i) -= 1;
-		return (ft_atoi(ft_strsub(data->setting, j, (*i - j) + 1)));
+		tmp = ft_strsub(data->setting, j, (*i - j) + 1);
+		return (ft_atoi_del(&tmp));
 	}
 }
 
@@ -40,7 +42,7 @@ int						get_precision_len(t_data *data)
 
 	i = 0;
 	j = 0;
-	tmp = ft_strdup(data->setting);
+	tmp = NULL;
 	while (data->setting[i])
 	{
 		if (data->setting[i] == '.')
@@ -50,12 +52,12 @@ int						get_precision_len(t_data *data)
 			j = i;
 			while (data->setting[i] >= '0' && data->setting[i] <= '9')
 				i++;
-			data->minimal_range = ft_atoi(
-				ft_strsub(data->setting, j, (i - j)));
+			tmp = ft_strsub(data->setting, j, (i - j));
+			data->minimal_range = ft_atoi_del(&tmp);
+			ft_memdel((void **)&tmp);
 			i--;
 		}
 		i++;
 	}
-	ft_memdel((void **)&tmp);
 	return (0);
 }
