@@ -80,21 +80,20 @@ int				ft_printf_ext(t_data *data, va_list arg, const char *format)
 
 int				ft_printf(const char *format, ...)
 {
-	t_data		*data;
+	t_data		data;
 	va_list		arg;
 	int			len;
 
 	va_start(arg, format);
-	data = load_struct();
-	if (ft_printf_ext(data, arg, format) == 0)
+	load_struct(&data);
+	if (ft_printf_ext(&data, arg, format) == 0)
 	{
-		struct_del(data);
+		struct_del(&data);
 		return (0);
 	}
-	ft_putstr(data->final_string);
+	ft_putstr(data.final_string);
 	va_end(arg);
-	len = (ft_strlen(data->final_string) + data->final_len);
-	struct_del(data);
-	data = NULL;
+	len = (ft_strlen(data.final_string) + data.final_len);
+	struct_del(&data);
 	return (len);
 }

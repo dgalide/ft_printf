@@ -23,7 +23,7 @@ void		percent_handler(t_data *data)
 	{
 		tmp = ft_memset(ft_strnew(data->minimal_range - 1), ' ',
 				data->minimal_range - 1);
-		if (data->flag->minus)
+		if (data->flag.minus)
 			arg = ft_strjoin_free(&arg, &tmp, 1, 1);
 		else
 			arg = ft_strjoin_free(&tmp, &arg, 1, 1);

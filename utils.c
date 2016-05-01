@@ -35,7 +35,7 @@ void		add_plus(char **str, t_data *data)
 	char *tmp;
 
 	tmp = NULL;
-	if (*str[0] && *str[0] != '-' && data->flag->plus)
+	if (*str[0] && *str[0] != '-' && data->flag.plus)
 	{
 		tmp = ft_strnew(1);
 		tmp = ft_memset(tmp, '+', 1);

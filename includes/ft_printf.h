@@ -37,8 +37,8 @@ typedef	struct	s_spec
 
 typedef	struct	s_data
 {
-	t_flag		*flag;
-	t_spec		*specifier;
+	t_flag		flag;
+	t_spec		specifier;
 	char		modifier;
 	int			precision;
 	int			precision_null;
@@ -67,7 +67,7 @@ int				search(t_data *data, int i, const char *format);
 int				get_precision_len(t_data *data);
 int				ft_is_flag(char c);
 
-t_data			*load_struct(void);
+void			load_struct(t_data *data);
 void			set_zero_data(t_data *data);
 void			add_plus(char **str, t_data *data);
 void			sign_replace(char **s1, char **s2);

@@ -43,18 +43,18 @@ static int				modifier_search(t_data *data)
 
 	i = (ft_strlen(data->setting) - 2);
 	if (data->setting[i] == 'h' && data->setting[i - 1] == 'h')
-		data->specifier->hh = 1;
+		data->specifier.hh = 1;
 	else if (data->setting[i] == 'h')
-		data->specifier->h = 1;
+		data->specifier.h = 1;
 	else if (data->setting[i] == 'l' && data->setting[i - 1] == 'l')
-		data->specifier->ll = 1;
+		data->specifier.ll = 1;
 	else if (data->setting[i] == 'l')
-		data->specifier->l = 1;
+		data->specifier.l = 1;
 	else if (data->setting[i] == 'j')
-		data->specifier->j = 1;
+		data->specifier.j = 1;
 	else if (data->setting[i] == 'z')
-		data->specifier->z = 1;
-	if (data->specifier->hh || data->specifier->ll)
+		data->specifier.z = 1;
+	if (data->specifier.hh || data->specifier.ll)
 		return ((check_setting(data->setting, i - 1) == 1) ? 1 : 0);
 	else
 		return ((check_setting(data->setting, i) == 1) ? 1 : 0);
@@ -68,15 +68,15 @@ static void				flag_search(t_data *data)
 	while (data->setting[i] && ft_is_flag(data->setting[i]))
 	{
 		if (data->setting[i] == '+')
-			data->flag->plus = 1;
+			data->flag.plus = 1;
 		if (data->setting[i] == '-')
-			data->flag->minus = 1;
+			data->flag.minus = 1;
 		if (data->setting[i] == '#')
-			data->flag->diez = 1;
+			data->flag.diez = 1;
 		if (data->setting[i] == '0')
-			data->flag->zero = 1;
+			data->flag.zero = 1;
 		if (data->setting[i] == ' ')
-			data->flag->space = 1;
+			data->flag.space = 1;
 		i++;
 	}
 }

@@ -14,28 +14,25 @@
 
 void			struct_del(t_data *data)
 {
-	free(data->specifier);
-	free(data->flag);
 	ft_memdel(((void **)&data->final_string));
 	ft_memdel(((void **)&data->setting));
-	free(data);
 }
 
 void			set_zero_data(t_data *data)
 {
 	if (data)
 	{
-		data->flag->diez = 0;
-		data->flag->zero = 0;
-		data->flag->plus = 0;
-		data->flag->minus = 0;
-		data->flag->space = 0;
-		data->specifier->ll = 0;
-		data->specifier->l = 0;
-		data->specifier->hh = 0;
-		data->specifier->h = 0;
-		data->specifier->j = 0;
-		data->specifier->z = 0;
+		data->flag.diez = 0;
+		data->flag.zero = 0;
+		data->flag.plus = 0;
+		data->flag.minus = 0;
+		data->flag.space = 0;
+		data->specifier.ll = 0;
+		data->specifier.l = 0;
+		data->specifier.hh = 0;
+		data->specifier.h = 0;
+		data->specifier.j = 0;
+		data->specifier.z = 0;
 		data->precision = 0;
 		data->precision_null = 0;
 		data->modifier = 0;
@@ -48,16 +45,10 @@ void			set_zero_data(t_data *data)
 	}
 }
 
-t_data			*load_struct(void)
+void			load_struct(t_data *data)
 {
-	t_data		*data;
-
-	data = (t_data *)malloc(sizeof(t_data));
-	data->flag = (t_flag *)malloc(sizeof(t_flag));
-	data->specifier = (t_spec *)malloc(sizeof(t_spec));
 	data->setting = NULL;
 	data->final_len = 0;
 	data->final_string = NULL;
 	set_zero_data(data);
-	return (data);
 }

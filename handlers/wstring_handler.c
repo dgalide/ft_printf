@@ -51,7 +51,7 @@ void		wstring_range_handler(t_data *data, char **str)
 	if (n > 0)
 	{
 		tmp = ft_memset(ft_strnew(n), ' ', n);
-		(*str) = (data->flag->minus) ? ft_strjoin_free(str, &tmp, 1, 1) :
+		(*str) = (data->flag.minus) ? ft_strjoin_free(str, &tmp, 1, 1) :
 									ft_strjoin_free(&tmp, str, 1, 1);
 	}
 }

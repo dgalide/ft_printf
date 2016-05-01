@@ -55,7 +55,7 @@ SRCO = $(SRC:.c=.o)
 
 INC = includes/ft_printf.h
 
-FLAG = -g -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra
 
 all: $(NAME)
 
