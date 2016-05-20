@@ -26,7 +26,8 @@ static void		null_handler(t_data *data)
 	char *str;
 
 	str = ft_strdup("(null)");
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }
 
 void			string_handler(t_data *data, va_list arg)
