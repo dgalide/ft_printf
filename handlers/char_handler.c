@@ -30,13 +30,13 @@ void		char_handler(t_data *data, va_list arg)
 	data->final_len += ft_strlen(str);
 	if (data->flag.minus && tmp == 1)
 	{
-		write(1, str, ft_strlen(str));
 		write(1, "\0", 1);
+		write(1, str, ft_strlen(str));
 	}
 	else if (!(data->flag.minus) && tmp == 1)
 	{
-		write(1, "\0", 1);
 		write(1, str, ft_strlen(str));
+		write(1, "\0", 1);
 	}
 	else
 		write(1, str, ft_strlen(str));

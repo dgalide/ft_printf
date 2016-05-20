@@ -13,7 +13,7 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 
-#define ARG "{%3c}"
+#define ARG "{%.C}"
 #define FORM 0
 
 int main()
