@@ -47,5 +47,6 @@ void		wchar_handler(t_data *data, va_list arg)
 
 	chr = (wchar_t)va_arg(arg, void *);
 	str = wchar_handler_ext(chr);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }

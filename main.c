@@ -46,8 +46,8 @@ void			get_side(t_data *data, int j, int i, const char *form)
 	if (i > j)
 	{
 		tmp = ft_strsub(form, j, i - j);
-		data->final_string = ft_strjoin_free(&(data->final_string),
-			&tmp, 1, 1);
+		data->final_len += (i - j);
+		write(1, tmp, i - j);
 	}
 }
 
@@ -91,9 +91,9 @@ int				ft_printf(const char *format, ...)
 		struct_del(&data);
 		return (0);
 	}
-	ft_putstr(data.final_string);
 	va_end(arg);
-	len = (ft_strlen(data.final_string) + data.final_len);
+	write(1, data.final_string, data.final_len);
+	len = (data.final_len);
 	struct_del(&data);
 	return (len);
 }

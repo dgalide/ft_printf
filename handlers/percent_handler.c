@@ -28,5 +28,6 @@ void		percent_handler(t_data *data)
 		else
 			arg = ft_strjoin_free(&tmp, &arg, 1, 1);
 	}
-	data->final_string = ft_strjoin_free(&data->final_string, &arg, 1, 1);
+	data->final_len += ft_strlen(arg);
+	write(1, arg, ft_strlen(arg));
 }

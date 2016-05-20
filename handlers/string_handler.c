@@ -43,6 +43,7 @@ void			string_handler(t_data *data, va_list arg)
 			cut_precision(data, &str);
 		if (data->minimal_range > (int)ft_strlen((char *)str))
 			generic_range_handler(data, &str);
-		data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+		data->final_len += ft_strlen(str);
+		write(1, str, ft_strlen(str));
 	}
 }

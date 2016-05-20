@@ -15,15 +15,29 @@
 void		char_handler(t_data *data, va_list arg)
 {
 	char	*str;
+	int		tmp;
 
 	str = ft_strnew(1);
 	str[0] = (int)va_arg(arg, void *);
 	if (str[0] == 0)
 	{
+		tmp = 1;
 		data->minimal_range -= 1;
 		data->final_len += 1;
 	}
 	if (data->minimal_range > (int)ft_strlen((char *)str))
 		generic_range_handler(data, &str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	if (data->flag.minus && tmp == 1)
+	{
+		write(1, str, ft_strlen(str));
+		write(1, "\0", 1);
+	}
+	else if (!(data->flag.minus) && tmp == 1)
+	{
+		write(1, "\0", 1);
+		write(1, str, ft_strlen(str));
+	}
+	else
+		write(1, str, ft_strlen(str));
 }

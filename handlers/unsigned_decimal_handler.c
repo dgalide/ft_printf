@@ -84,5 +84,6 @@ void		unsigned_decimal_handler(t_data *data, va_list arg)
 	str = cast_handler(data, n);
 	unsigned_precision_handler(data, &str);
 	unsigned_range_handler(data, &str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }

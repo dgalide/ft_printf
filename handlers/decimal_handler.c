@@ -21,7 +21,7 @@ static char			*decimal_cast_handler(t_data *data, void *decimal_nb)
 		str = ft_itoa((short int)decimal_nb, 10);
 	else if (data->specifier.hh)
 		str = ft_itoa((signed char)decimal_nb, 10);
-	else if (data->specifier.l)
+	else if (data->specifier.l || data->modifier == 'D')
 		str = ft_itoa((long)decimal_nb, 10);
 	else if (data->specifier.ll)
 		str = ft_itoa((long long)decimal_nb, 10);
@@ -117,5 +117,6 @@ void				decimal_handler(t_data *data, va_list arg)
 		add_plus(&str, data);
 	decimal_range_handler(data, &str);
 	space_handler(data, &str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }

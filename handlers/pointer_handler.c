@@ -43,5 +43,6 @@ void			pointer_handler(t_data *data, va_list arg)
 	data->flag.zero = 0;
 	if (data->minimal_range > (int)ft_strlen(str))
 		generic_range_handler(data, &str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }

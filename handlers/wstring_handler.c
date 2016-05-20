@@ -67,5 +67,6 @@ void		wstring_handler(t_data *data, va_list arg)
 	wstr = (wchar_t *)va_arg(arg, void *);
 	wide_to_char(&wstr, &s1, &s2, -1);
 	wstring_range_handler(data, &s2);
-	data->final_string = ft_strjoin_free(&data->final_string, &s2, 1, 1);
+	data->final_len += ft_strlen(s2);
+	write(1, s2, ft_strlen(s2));
 }

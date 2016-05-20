@@ -21,7 +21,7 @@ static char	*cast_handler(t_data *data, intmax_t n)
 		str = ft_unsigned_itoa((unsigned short int)n, 8);
 	else if (data->specifier.hh)
 		str = ft_unsigned_itoa((unsigned char)n, 8);
-	else if (data->specifier.l)
+	else if (data->specifier.l || data->modifier == 'O')
 		str = ft_unsigned_itoa((unsigned long int)n, 8);
 	else if (data->specifier.ll)
 		str = ft_unsigned_itoa((unsigned long long int)n, 8);
@@ -93,5 +93,6 @@ void		octal_handler(t_data *data, va_list arg)
 	octal_diez(&str, data);
 	precision_octal_handler(data, &str);
 	range_octal_handler(data, &str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }

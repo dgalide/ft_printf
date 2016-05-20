@@ -101,5 +101,6 @@ void			hexadecimal_handler(t_data *data, va_list arg)
 	range_hexadecimal_handler(data, &str);
 	if (data->modifier == 'X')
 		upper_case_handler(&str);
-	data->final_string = ft_strjoin_free(&data->final_string, &str, 1, 1);
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
 }
