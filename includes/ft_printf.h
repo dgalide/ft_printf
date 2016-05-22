@@ -16,6 +16,15 @@
 # include "libft.h"
 # include <stdarg.h>
 
+# define BLACK    \033[0;30m
+# define RED      \033[0;31m
+# define GREEN    \033[0;32m
+# define YELLOW   \033[0;33m
+# define BLUE     \033[0;34m
+# define PURPLE   \033[0;35m
+# define CYAN     \033[0;36m
+# define GREY     \033[0;37m
+
 typedef struct	s_flag
 {
 	int			diez;
@@ -74,6 +83,7 @@ void			sign_replace(char **s1, char **s2);
 void			add_diez(char **arg, int zero_bool);
 void			replace_diez(char **arg);
 void			struct_del(t_data *data);
+void			color(char **finalstr);
 
 int				ft_printf(const char *format, ...);
 void			process(t_data *data, va_list arg);

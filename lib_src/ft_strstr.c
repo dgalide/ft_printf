@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2test.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 21:03:39 by dgalide           #+#    #+#             */
-/*   Updated: 2016/05/20 21:03:42 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/24 13:37:04 by dgalide           #+#    #+#             */
+/*   Updated: 2016/02/01 05:14:50 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../includes/libft.h"
 
-#define ARG "BLUE{% 03d}BLUE"
-#define FORM 0
-
-int main()
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	printf("%d\n", ft_printf(ARG, FORM));
-	printf("%d\n", printf(ARG, FORM));
-	return (0);
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (!s2[j])
+		return ((char *)s1);
+	while (s1[i])
+	{
+		while (s1[i + j] == s2[j])
+		{
+			if (!s2[j + 1])
+				return ((char *)&s1[i]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (NULL);
 }

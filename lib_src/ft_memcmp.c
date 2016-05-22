@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2test.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 21:03:39 by dgalide           #+#    #+#             */
-/*   Updated: 2016/05/20 21:03:42 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/28 17:21:00 by dgalide           #+#    #+#             */
+/*   Updated: 2016/02/01 05:08:08 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../includes/libft.h"
 
-#define ARG "BLUE{% 03d}BLUE"
-#define FORM 0
-
-int main()
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	printf("%d\n", ft_printf(ARG, FORM));
-	printf("%d\n", printf(ARG, FORM));
+	size_t	i;
+	char	*p1;
+	char	*p2;
+
+	i = 0;
+	p1 = (char *)s1;
+	p2 = (char *)s2;
+	while (i < n)
+	{
+		if (p1[i] != p2[i])
+			return ((unsigned char)p1[i] - (unsigned char)p2[i]);
+		i++;
+	}
 	return (0);
 }

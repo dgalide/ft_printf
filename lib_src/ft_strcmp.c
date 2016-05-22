@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2test.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 21:03:39 by dgalide           #+#    #+#             */
-/*   Updated: 2016/05/20 21:03:42 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/23 13:25:03 by dgalide           #+#    #+#             */
+/*   Updated: 2016/02/01 05:11:17 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../includes/libft.h"
 
-#define ARG "BLUE{% 03d}BLUE"
-#define FORM 0
-
-int main()
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	printf("%d\n", ft_printf(ARG, FORM));
-	printf("%d\n", printf(ARG, FORM));
-	return (0);
+	return (ft_memcmp((const char *)s1, (const char *)s2, (ft_strlen(s1) + 1)));
 }

@@ -18,6 +18,7 @@ SRC =	main.c 			\
 		search.c 		\
 		get.c 			\
 		func.c 			\
+		color.c 		\
 		handlers/unsigned_decimal_handler.c \
 		handlers/decimal_handler.c \
 		handlers/percent_handler.c \
@@ -29,9 +30,14 @@ SRC =	main.c 			\
 		handlers/char_handler.c \
 		handlers/pointer_handler.c \
 		lib_src/erase_char.c  	\
+		lib_src/ft_replace.c 	\
 		lib_src/ft_itoa.c 		\
 		lib_src/ft_memdel.c 	\
 		lib_src/ft_power.c 		\
+		lib_src/ft_strcmp.c 	\
+		lib_src/ft_memcmp.c 	\
+		lib_src/ft_strstr.c 	\
+		lib_src/ft_strcat.c 	\
 		lib_src/ft_putchar.c 	\
 		lib_src/ft_putendl.c 	\
 		lib_src/ft_putnbr.c 	\

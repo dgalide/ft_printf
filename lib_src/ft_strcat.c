@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2test.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 21:03:39 by dgalide           #+#    #+#             */
-/*   Updated: 2016/05/20 21:03:42 by dgalide          ###   ########.fr       */
+/*   Created: 2015/11/29 16:10:02 by dgalide           #+#    #+#             */
+/*   Updated: 2016/02/01 05:10:47 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../includes/libft.h"
 
-#define ARG "BLUE{% 03d}BLUE"
-#define FORM 0
-
-int main()
+char	*ft_strcat(char *restrict s1, const char *restrict s2)
 {
-	printf("%d\n", ft_printf(ARG, FORM));
-	printf("%d\n", printf(ARG, FORM));
-	return (0);
+	int i;
+	int j;
+
+	i = (ft_strlen((char *)s1));
+	j = 0;
+	while (s2[j])
+	{
+		s1[i] = s2[j];
+		i++;
+		j++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }

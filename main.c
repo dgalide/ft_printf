@@ -84,10 +84,13 @@ int				ft_printf(const char *format, ...)
 	t_data		data;
 	va_list		arg;
 	int			len;
+	char		*tmp;
 
 	va_start(arg, format);
 	load_struct(&data);
-	if (ft_printf_ext(&data, arg, format) == 0)
+	tmp = ft_strdup((char *)format);
+	ft_putstr("\033[31m salut \033[0m");
+	if (ft_printf_ext(&data, arg, tmp) == 0)
 	{
 		struct_del(&data);
 		return (0);

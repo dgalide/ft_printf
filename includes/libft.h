@@ -75,6 +75,7 @@ int					ft_strequ(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 int					check_line(char *str, int c);
 
+char			*ft_replace(char *search, char *replacedby, char *str);
 char				*ft_itoa(intmax_t nb, int base);
 char				*ft_unsigned_itoa(unsigned long long nb, int base);
 char				*ft_strjoin_free(char **s1, char **s2,
