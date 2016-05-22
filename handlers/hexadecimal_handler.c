@@ -93,6 +93,7 @@ void			hexadecimal_handler(t_data *data, va_list arg)
 	char		*str;
 
 	n = (uintmax_t)va_arg(arg, void *);
+	str = NULL;
 	str = cast_handler(data, n);
 	zero_bool = (((str)[0] == '0') ? 1 : 0);
 	precision_handler(data, &str, zero_bool);
@@ -103,4 +104,5 @@ void			hexadecimal_handler(t_data *data, va_list arg)
 		upper_case_handler(&str);
 	data->final_len += ft_strlen(str);
 	write(1, str, ft_strlen(str));
+//	ft_memdel((void **)&str);
 }

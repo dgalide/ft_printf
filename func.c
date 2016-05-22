@@ -18,14 +18,17 @@ void			generic_range_handler(t_data *data, char **s1)
 	int		n;
 
 	n = data->minimal_range - ft_strlen((*s1));
-	tmp = ft_memset(ft_strnew(n), ' ', n);
-	if (data->flag.minus)
-		(*s1) = ft_strjoin_free(s1, &tmp, 1, 1);
-	else
+	if (n > 0)
 	{
-		if (data->flag.zero)
-			tmp = ft_memset(tmp, '0', n);
-		(*s1) = ft_strjoin_free(&tmp, s1, 1, 1);
+		tmp = ft_memset(ft_strnew(n), ' ', n);
+		if (data->flag.minus)
+			(*s1) = ft_strjoin_free(s1, &tmp, 1, 1);
+		else
+		{
+			if (data->flag.zero)
+				tmp = ft_memset(tmp, '0', n);
+			(*s1) = ft_strjoin_free(&tmp, s1, 1, 1);
+		}
 	}
 }
 

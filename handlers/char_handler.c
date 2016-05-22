@@ -40,4 +40,5 @@ void		char_handler(t_data *data, va_list arg)
 	}
 	else
 		write(1, str, ft_strlen(str));
+	ft_memdel((void **)&str);
 }

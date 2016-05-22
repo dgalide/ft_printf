@@ -81,9 +81,11 @@ void		unsigned_decimal_handler(t_data *data, va_list arg)
 	char				*str;
 
 	n = (unsigned long long)va_arg(arg, void *);
+	str = NULL;
 	str = cast_handler(data, n);
 	unsigned_precision_handler(data, &str);
 	unsigned_range_handler(data, &str);
 	data->final_len += ft_strlen(str);
 	write(1, str, ft_strlen(str));
+//	ft_memdel((void **)&str);
 }

@@ -12,6 +12,16 @@
 
 #include "../includes/ft_printf.h"
 
+static void		null_handler(t_data *data)
+{
+	char *str;
+
+	str = ft_strdup("(null)");
+	data->final_len += ft_strlen(str);
+	write(1, str, ft_strlen(str));
+	ft_memdel((void **)&str);
+}
+
 static void	wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
 {
 	while ((*tmp) && (*tmp)[++i])
@@ -65,8 +75,11 @@ void		wstring_handler(t_data *data, va_list arg)
 	s1 = NULL;
 	s2 = NULL;
 	wstr = (wchar_t *)va_arg(arg, void *);
+	if (!wstr || wstr == NULL)
+		null_handler(data);
 	wide_to_char(&wstr, &s1, &s2, -1);
 	wstring_range_handler(data, &s2);
 	data->final_len += ft_strlen(s2);
 	write(1, s2, ft_strlen(s2));
+//	ft_memdel((void **)&s2);
 }

@@ -36,6 +36,7 @@ void			pointer_handler(t_data *data, va_list arg)
 {
 	char	*str;
 
+	str = NULL;
 	str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
 	if (data->precision > (int)ft_strlen(str))
 		precision_pointer_handler(&str, data);
@@ -45,4 +46,5 @@ void			pointer_handler(t_data *data, va_list arg)
 		generic_range_handler(data, &str);
 	data->final_len += ft_strlen(str);
 	write(1, str, ft_strlen(str));
+//	ft_memdel((void **)&str);
 }

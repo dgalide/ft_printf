@@ -48,6 +48,7 @@ void			get_side(t_data *data, int j, int i, const char *form)
 		tmp = ft_strsub(form, j, i - j);
 		data->final_len += (i - j);
 		write(1, tmp, i - j);
+		ft_memdel((void **)&tmp);
 	}
 }
 

@@ -13,8 +13,8 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 
-#define ARG "{%.C}"
-#define FORM 0
+#define ARG "{%3*d}"
+#define FORM 42
 
 int main()
 {

@@ -17,6 +17,7 @@ void		percent_handler(t_data *data)
 	char *arg;
 	char *tmp;
 
+	arg = NULL;
 	arg = ft_memset(ft_strnew(1), '%', 1);
 	tmp = NULL;
 	if (data->minimal_range)
@@ -30,4 +31,5 @@ void		percent_handler(t_data *data)
 	}
 	data->final_len += ft_strlen(arg);
 	write(1, arg, ft_strlen(arg));
+	ft_memdel((void **)&arg);
 }

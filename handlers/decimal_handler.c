@@ -111,6 +111,7 @@ void				decimal_handler(t_data *data, va_list arg)
 	char *str;
 
 	i = va_arg(arg, void *);
+	str = NULL;
 	str = decimal_cast_handler(data, i);
 	decimal_precision_handler(data, &str);
 	if (data->flag.plus == 1)
@@ -119,4 +120,5 @@ void				decimal_handler(t_data *data, va_list arg)
 	space_handler(data, &str);
 	data->final_len += ft_strlen(str);
 	write(1, str, ft_strlen(str));
+//	ft_memdel((void **)&str);
 }
