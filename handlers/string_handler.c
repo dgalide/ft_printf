@@ -36,6 +36,7 @@ void			string_handler(t_data *data, va_list arg)
 	char		*str;
 
 	str = ft_strdup(va_arg(arg, void *));
+
 	if (!str || str == NULL)
 		null_handler(data);
 	else
@@ -43,6 +44,8 @@ void			string_handler(t_data *data, va_list arg)
 		if (data->precision < (int)ft_strlen((char *)str) &&
 			data->precision != 0)
 			cut_precision(data, &str);
+		if (data->precision_null)
+			ft_memdel((void **)&str);
 		if (data->minimal_range > (int)ft_strlen((char *)str))
 			generic_range_handler(data, &str);
 		data->final_len += ft_strlen(str);

@@ -71,7 +71,6 @@ static void			decimal_range_handler(t_data *data, char **arg)
 	len_arg = (int)ft_strlen(*arg);
 	if (data->minimal_range > len_arg)
 	{
-		data->flag.space = 0;
 		tmp = ft_strnew(data->minimal_range - len_arg);
 		if (data->flag.zero == 1 && data->precision == 0 &&
 			data->flag.minus == 0)
@@ -116,6 +115,8 @@ void				decimal_handler(t_data *data, va_list arg)
 	decimal_precision_handler(data, &str);
 	if (data->flag.plus == 1)
 		add_plus(&str, data);
+	if (data->flag.space)
+		data->minimal_range -= 1;
 	decimal_range_handler(data, &str);
 	space_handler(data, &str);
 	data->final_len += ft_strlen(str);

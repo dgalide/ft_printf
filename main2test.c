@@ -12,9 +12,10 @@
 
 #include "includes/ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
-#define ARG "{%3*d}"
-#define FORM 42
+#define ARG "{% 03d}"
+#define FORM 0
 
 int main()
 {

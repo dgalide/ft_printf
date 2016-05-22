@@ -89,7 +89,7 @@ void		octal_handler(t_data *data, va_list arg)
 	n = (intmax_t)va_arg(arg, void *);
 	str = NULL;
 	str = cast_handler(data, n);
-	data->flag.diez = (n == 0) ? 0 : data->flag.diez;
+	data->flag.diez = (n == 0 && !data->precision_null) ? 0 : data->flag.diez;
 	if (data->precision_null && str[0] == '0')
 		ft_memdel((void **)&str);
 	octal_diez(&str, data);

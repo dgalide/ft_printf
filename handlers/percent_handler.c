@@ -27,7 +27,10 @@ void		percent_handler(t_data *data)
 		if (data->flag.minus)
 			arg = ft_strjoin_free(&arg, &tmp, 1, 1);
 		else
+		{
+			tmp = (data->flag.zero) ? ft_memset(tmp, '0', ft_strlen(tmp)) : tmp;
 			arg = ft_strjoin_free(&tmp, &arg, 1, 1);
+		}
 	}
 	data->final_len += ft_strlen(arg);
 	write(1, arg, ft_strlen(arg));

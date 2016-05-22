@@ -38,6 +38,8 @@ void			pointer_handler(t_data *data, va_list arg)
 
 	str = NULL;
 	str = ft_itoa((intmax_t)va_arg(arg, intmax_t), 16);
+	if (str[0] == '0' && data->precision_null == 1)
+		ft_memdel((void **)&str);
 	if (data->precision > (int)ft_strlen(str))
 		precision_pointer_handler(&str, data);
 	prefix_handler(&str);
