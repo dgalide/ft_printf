@@ -77,4 +77,5 @@ void		wchar_handler(t_data *data, va_list arg)
 	generic_range_handler(data, &str);
 	data->final_len += ft_strlen(str);
 	wchar_handler_ext_2(data, tmp, str);
+	ft_memdel((void **)&str);
 }
