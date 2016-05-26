@@ -50,4 +50,5 @@ void			string_handler(t_data *data, va_list arg)
 		data->final_len += ft_strlen(str);
 		write(1, str, ft_strlen(str));
 	}
+	ft_memdel((void **)&str);
 }

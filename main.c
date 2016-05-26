@@ -92,10 +92,12 @@ int				ft_printf(const char *format, ...)
 	if (ft_printf_ext(&data, arg, tmp) == 0)
 	{
 		struct_del(&data);
+		ft_memdel((void **)&tmp);
 		return (0);
 	}
 	va_end(arg);
 	len = (data.final_len);
+	ft_memdel((void **)&tmp);
 	struct_del(&data);
 	return (len);
 }
