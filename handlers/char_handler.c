@@ -12,6 +12,22 @@
 
 #include "../includes/ft_printf.h"
 
+void		char_handler_ext(t_data *data, int tmp, char *str)
+{
+	if (data->flag.minus && tmp == 1)
+	{
+		write(1, "\0", 1);
+		write(1, str, ft_strlen(str));
+	}
+	else if (!(data->flag.minus) && tmp == 1)
+	{
+		write(1, str, ft_strlen(str));
+		write(1, "\0", 1);
+	}
+	else
+		write(1, str, ft_strlen(str));
+}
+
 void		char_handler(t_data *data, va_list arg)
 {
 	char	*str;
@@ -28,17 +44,6 @@ void		char_handler(t_data *data, va_list arg)
 	if (data->minimal_range > (int)ft_strlen((char *)str))
 		generic_range_handler(data, &str);
 	data->final_len += ft_strlen(str);
-	if (data->flag.minus && tmp == 1)
-	{
-		write(1, "\0", 1);
-		write(1, str, ft_strlen(str));
-	}
-	else if (!(data->flag.minus) && tmp == 1)
-	{
-		write(1, str, ft_strlen(str));
-		write(1, "\0", 1);
-	}
-	else
-		write(1, str, ft_strlen(str));
+	char_handler_ext(data, tmp, str);
 	ft_memdel((void **)&str);
 }

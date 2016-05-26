@@ -89,14 +89,12 @@ int				ft_printf(const char *format, ...)
 	va_start(arg, format);
 	load_struct(&data);
 	tmp = ft_strdup((char *)format);
-	ft_putstr("\033[31m salut \033[0m");
 	if (ft_printf_ext(&data, arg, tmp) == 0)
 	{
 		struct_del(&data);
 		return (0);
 	}
 	va_end(arg);
-	write(1, data.final_string, data.final_len);
 	len = (data.final_len);
 	struct_del(&data);
 	return (len);

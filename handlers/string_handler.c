@@ -36,7 +36,6 @@ void			string_handler(t_data *data, va_list arg)
 	char		*str;
 
 	str = ft_strdup(va_arg(arg, void *));
-
 	if (!str || str == NULL)
 		null_handler(data);
 	else
@@ -50,6 +49,5 @@ void			string_handler(t_data *data, va_list arg)
 			generic_range_handler(data, &str);
 		data->final_len += ft_strlen(str);
 		write(1, str, ft_strlen(str));
-//		ft_memdel((void **)&str);
 	}
 }

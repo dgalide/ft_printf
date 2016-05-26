@@ -48,5 +48,5 @@ void			pointer_handler(t_data *data, va_list arg)
 		generic_range_handler(data, &str);
 	data->final_len += ft_strlen(str);
 	write(1, str, ft_strlen(str));
-//	ft_memdel((void **)&str);
+	ft_memdel((void **)&str);
 }

@@ -22,7 +22,7 @@ static void		null_handler(t_data *data)
 	ft_memdel((void **)&str);
 }
 
-static void	wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
+static void		wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
 {
 	while ((*tmp) && (*tmp)[++i])
 	{
@@ -51,7 +51,7 @@ static void	wide_to_char(wchar_t **tmp, char **s1, char **s2, int i)
 	}
 }
 
-void		wstring_range_handler(t_data *data, char **str)
+void			wstring_range_handler(t_data *data, char **str)
 {
 	char	*tmp;
 	int		n;
@@ -66,7 +66,7 @@ void		wstring_range_handler(t_data *data, char **str)
 	}
 }
 
-void		wstring_handler(t_data *data, va_list arg)
+void			wstring_handler(t_data *data, va_list arg)
 {
 	wchar_t *wstr;
 	char	*s1;
@@ -81,5 +81,5 @@ void		wstring_handler(t_data *data, va_list arg)
 	wstring_range_handler(data, &s2);
 	data->final_len += ft_strlen(s2);
 	write(1, s2, ft_strlen(s2));
-//	ft_memdel((void **)&s2);
+	ft_memdel((void **)&s2);
 }

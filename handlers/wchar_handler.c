@@ -40,26 +40,9 @@ static char	*wchar_handler_ext(wchar_t chr)
 	return (str);
 }
 
-void		wchar_handler(t_data *data, va_list arg)
+void		wchar_handler_ext_2(t_data *data, int tmp, char *str)
 {
-	char	*str;
-	int		tmp;
-	wchar_t	chr;
-
-	chr = (wchar_t)va_arg(arg, void *);
-	tmp = 0;
-	if (chr == 0)
-	{
-		data->final_len += 1;
-		data->minimal_range = (data->minimal_range > 0) ? data->minimal_range - 1 : data->minimal_range;
-		tmp = 1;
-	}
-	str = wchar_handler_ext(chr);
-	if (tmp == 1)
-		ft_memdel((void **)&str);
-	generic_range_handler(data, &str);
-	data->final_len += ft_strlen(str);
-	if (tmp == 1  && data->flag.minus)
+	if (tmp == 1 && data->flag.minus)
 	{
 		write(1, "\0", 1);
 		write(1, str, ft_strlen(str));
@@ -71,5 +54,27 @@ void		wchar_handler(t_data *data, va_list arg)
 	}
 	else
 		write(1, str, ft_strlen(str));
-//	ft_memdel((void **)&str);
+}
+
+void		wchar_handler(t_data *data, va_list arg)
+{
+	char	*str;
+	int		tmp;
+	wchar_t	chr;
+
+	chr = (wchar_t)va_arg(arg, void *);
+	tmp = 0;
+	if (chr == 0)
+	{
+		data->final_len += 1;
+		data->minimal_range = (data->minimal_range > 0) ?
+		data->minimal_range - 1 : data->minimal_range;
+		tmp = 1;
+	}
+	str = wchar_handler_ext(chr);
+	if (tmp == 1)
+		ft_memdel((void **)&str);
+	generic_range_handler(data, &str);
+	data->final_len += ft_strlen(str);
+	wchar_handler_ext_2(data, tmp, str);
 }
